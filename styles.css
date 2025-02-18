@@ -1,109 +1,155 @@
-/* General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    background-color: #000;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f0f0f0;
+  color: #333;
 }
 
-/* Navigation Bar */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.9);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
+header {
+  background-color: #ff7f32; /* Elsie's favorite orange */
+  padding: 10px 20px;
+  color: white;
 }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
+header .nav-links {
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
 }
 
-.nav-links a {
-    color: #ff7f00;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s;
+header .nav-links li {
+  margin-left: 20px;
 }
 
-.nav-links a:hover {
-    color: #fff;
+header .nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
 }
 
-/* Hero Section */
 .hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: url('hero-bg.jpg') no-repeat center center/cover;
+  background-color: #ff9d4d; /* Lighter shade of orange */
+  color: white;
+  padding: 100px 20px;
+  text-align: center;
 }
 
-.hero-content {
-    max-width: 600px;
-    animation: fadeIn 2s ease-in-out;
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  margin-bottom: 30px;
 }
 
 .cta-button {
-    display: inline-block;
-    padding: 15px 30px;
-    background: #ff7f00;
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background 0.3s;
+  background-color: #ff7f32; /* Elsie's favorite orange */
+  padding: 15px 25px;
+  text-decoration: none;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
 }
 
-.cta-button:hover {
-    background: #ff4500;
-}
-
-/* Sections */
 section {
-    padding: 80px 20px;
-    text-align: center;
-    animation: slideUp 1s ease-in-out;
+  padding: 50px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about, .programs, .involved, .contact {
+  margin-bottom: 50px;
 }
 
 h2 {
-    color: #ff7f00;
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
-/* Footer */
+.program-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.program {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 45%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.involved-options {
+  display: flex;
+  justify-content: space-between;
+}
+
+.volunteer, .donate {
+  background-color: white;
+  padding: 20px;
+  width: 45%;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form label {
+  margin-top: 10px;
+}
+
+.contact-form input, .contact-form textarea {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.contact-form button {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #ff7f32; /* Elsie's favorite orange */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 footer {
-    background: #111;
-    text-align: center;
-    padding: 20px;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+footer .social-links a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
 }
 
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(50px); }
-    to { opacity: 1; transform: translateY(0); }
+footer .social-links a:hover {
+  text-decoration: underline;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
-    .nav-links {
-        flex-direction: column;
-        display: none;
-    }
-    
-    .hero-content {
-        padding: 20px;
-    }
+  .program-list, .involved-options {
+    flex-direction: column;
+  }
+
+  .program, .volunteer, .donate {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
