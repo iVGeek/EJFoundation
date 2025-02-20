@@ -27,3 +27,6 @@ You can support Elsie's Hope Foundation in the following ways:
 For inquiries, partnerships, or support, reach out via email at **contact@[yourdomain].org** or through our social media channels.
 
 Together, we can create a future where mental health is prioritized, understood, and supported.
+
+##Link_to_website
+https://ivgeek.github.io/EJFoundation/#
