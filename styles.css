@@ -320,7 +320,37 @@ textarea:focus {
 /* ======================
    Responsive Design
 ======================= */
+@media (max-width: 1024px) {
+    .hero-content h1 {
+        font-size: 3.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.8rem;
+    }
+
+    .program-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
 @media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .hero-content p {
+        font-size: 1.6rem;
+    }
+
+    .program-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
     .nav-links {
         position: fixed;
         top: 0;
@@ -332,26 +362,45 @@ textarea:focus {
         padding: 10rem 2rem;
         transition: var(--transition);
     }
-    
+
     .nav-active .nav-links {
         right: 0;
     }
-    
+
     .hamburger {
         display: block;
-    }
-    
-    .hero-content h1 {
-        font-size: 3.6rem;
-    }
-    
-    .program-grid {
-        grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 480px) {
     .hero-content h1 {
-        font-size: 3rem;
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.4rem;
+    }
+
+    .program-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+
+    .story-form,
+    .contact-form {
+        padding: 1rem;
+    }
+
+    .submit-button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
     }
 }
