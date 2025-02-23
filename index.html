@@ -35,8 +35,7 @@
                     <li><a href="#programs" class="nav-link">Programs</a></li>
                     <li><a href="#partner" class="nav-link">Partner</a></li>
                     <li><a href="#sponsor" class="nav-link">Sponsor</a></li>
-                    <li><a href="#gallery" class="nav-link">Gallery</a></li>
-                    <li><a href="#stories" class="nav-link">Your Stories</a></li>
+                    <li><a href="#stories" class="nav-link">Impact Stories</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </div>
@@ -44,6 +43,7 @@
     </header>
 
     <main id="main-content">
+        <!-- Hero Section -->
         <section class="hero" aria-labelledby="hero-heading">
             <div class="hero-content">
                 <h1 id="hero-heading">Empowering Minds, Changing Lives</h1>
@@ -52,6 +52,7 @@
             </div>
         </section>
 
+        <!-- About Section -->
         <section id="about" class="section about" aria-labelledby="about-heading">
             <div class="container">
                 <h2 id="about-heading">Our Story</h2>
@@ -59,6 +60,7 @@
             </div>
         </section>
 
+        <!-- Programs Section -->
         <section id="programs" class="section programs" aria-labelledby="programs-heading">
             <div class="container">
                 <h2 id="programs-heading">Our Programs</h2>
@@ -109,37 +111,26 @@
             </div>
         </section>
 
-        <section id="gallery" class="section gallery" aria-labelledby="gallery-heading">
+        <!-- Impact Stories Section -->
+        <section id="stories" class="section stories" aria-labelledby="stories-heading">
             <div class="container">
-                <h2 id="gallery-heading">Gallery</h2>
-                <div class="gallery-grid">
-                    <figure class="gallery-item">
-                        <img src="image1.jpg" alt="Community members participating in awareness walk" loading="lazy">
-                    </figure>
-                    <figure class="gallery-item">
-                        <img src="image2.jpg" alt="Volunteers interacting with children" loading="lazy">
-                    </figure>
-                    <figure class="gallery-item">
-                        <img src="image3.jpg" alt="Educational session with seniors" loading="lazy">
-                    </figure>
+                <h2 id="stories-heading">Impact Stories</h2>
+                <div class="story-grid">
+                    <article class="story-card">
+                        <img src="assets/images/story1.jpg" alt="Story 1" loading="lazy">
+                        <h3 class="story-title">John's Journey</h3>
+                        <p class="story-description">John found hope and support through our mental health programs.</p>
+                    </article>
+                    <article class="story-card">
+                        <img src="assets/images/story2.jpg" alt="Story 2" loading="lazy">
+                        <h3 class="story-title">Mary's Recovery</h3>
+                        <p class="story-description">Mary overcame her struggles with the help of our community.</p>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <section id="stories" class="section stories" aria-labelledby="stories-heading">
-            <div class="container">
-                <h2 id="stories-heading">Share Your Story</h2>
-                <p class="stories-intro">Tell us how the foundation has impacted your life.</p>
-                <form class="story-form" netlify>
-                    <div class="form-group">
-                        <label for="story" class="sr-only">Your Story</label>
-                        <textarea id="story" name="story" placeholder="Write your story here..." required></textarea>
-                    </div>
-                    <button type="submit" class="submit-button">Submit</button>
-                </form>
-            </div>
-        </section>
-
+        <!-- Contact Section -->
         <section id="contact" class="section contact" aria-labelledby="contact-heading">
             <div class="container">
                 <h2 id="contact-heading">Contact Us</h2>
@@ -162,14 +153,25 @@
         </section>
     </main>
 
+    <!-- Footer -->
     <footer class="site-footer" aria-labelledby="footer-heading">
         <div class="container">
-            <p class="copyright">&copy; 2025 Elsie’s Hope Foundation. All rights reserved.</p>
-            <div class="social-links">
-                <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
-                <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
-                <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="Twitter">Twitter</a>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 id="footer-heading">Contact Us</h3>
+                    <p>Email: info@elsieshope.org</p>
+                    <p>Phone: +123 456 7890</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
+                        <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+                        <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="Twitter">Twitter</a>
+                    </div>
+                </div>
             </div>
+            <p class="copyright">&copy; 2025 Elsie’s Hope Foundation. All rights reserved.</p>
         </div>
     </footer>
 
