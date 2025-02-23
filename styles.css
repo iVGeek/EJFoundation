@@ -278,6 +278,18 @@ body {
 }
 
 /* ======================
+   Contact Section
+======================= */
+.contact {
+    background: var(--card-bg);
+    padding: 4rem 0;
+}
+
+[data-theme="light"] .contact {
+    background: rgba(255, 255, 255, 0.9); /* Light background for contact section */
+}
+
+/* ======================
    Forms
 ======================= */
 .story-form,
@@ -295,10 +307,11 @@ textarea {
     width: 100%;
     padding: 1.5rem;
     background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2); /* Darker border for light theme */
     border-radius: 0.5rem;
     color: var(--text-color);
     transition: var(--transition);
+    font-size: 1rem;
 }
 
 input:focus,
@@ -308,6 +321,20 @@ textarea:focus {
     background: rgba(255, 127, 0, 0.05);
 }
 
+/* Light Theme Specific Styles */
+[data-theme="light"] input,
+[data-theme="light"] textarea {
+    background: rgba(255, 255, 255, 0.9); /* Light background for inputs */
+    border: 1px solid rgba(0, 0, 0, 0.3); /* Darker border for better visibility */
+    color: #000; /* Black text for better contrast */
+}
+
+[data-theme="light"] input::placeholder,
+[data-theme="light"] textarea::placeholder {
+    color: #666; /* Placeholder text color for light theme */
+}
+
+/* Submit Button */
 .submit-button {
     background: var(--primary-color);
     color: var(--text-color);
@@ -322,6 +349,16 @@ textarea:focus {
 .submit-button:hover {
     background: var(--secondary-color);
     transform: translateY(-2px);
+}
+
+/* Light Theme Button Styles */
+[data-theme="light"] .submit-button {
+    background: var(--primary-color);
+    color: #fff; /* White text for better contrast */
+}
+
+[data-theme="light"] .submit-button:hover {
+    background: var(--secondary-color);
 }
 
 /* ======================
