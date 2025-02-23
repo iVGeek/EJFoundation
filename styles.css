@@ -212,6 +212,38 @@ body {
 }
 
 /* ======================
+   Partner Section
+======================= */
+.partner {
+    background: var(--card-bg);
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.partner-text {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* ======================
+   Sponsor Section
+======================= */
+.sponsor {
+    background: var(--background);
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.sponsor-text {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+/* ======================
    Gallery
 ======================= */
 .gallery-grid {
@@ -332,6 +364,11 @@ textarea:focus {
     .program-grid {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
+
+    .partner-text,
+    .sponsor-text {
+        font-size: 1.1rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -370,6 +407,16 @@ textarea:focus {
     .hamburger {
         display: block;
     }
+
+    .partner,
+    .sponsor {
+        padding: 3rem 0;
+    }
+
+    .partner-text,
+    .sponsor-text {
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -402,5 +449,15 @@ textarea:focus {
     .submit-button {
         padding: 1rem 2rem;
         font-size: 1rem;
+    }
+
+    .partner,
+    .sponsor {
+        padding: 2rem 0;
+    }
+
+    .partner-text,
+    .sponsor-text {
+        font-size: 0.9rem;
     }
 }
