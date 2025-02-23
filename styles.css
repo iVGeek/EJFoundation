@@ -1,20 +1,357 @@
-/* Import Base Styles */
-@import url('styles/base/reset.css');
-@import url('styles/base/variables.css');
-@import url('styles/base/typography.css');
+/* ======================
+   Theme Variables
+======================= */
+:root {
+    /* Light Theme */
+    --light-bg: #ffffff;
+    --light-text: #000000;
+    --light-primary: #ff7f00;
+    --light-secondary: #ff4500;
+    --light-nav-bg: rgba(255, 255, 255, 0.95);
+    --light-card-bg: rgba(0, 0, 0, 0.05);
 
-/* Import Component Styles */
-@import url('styles/components/buttons.css');
-@import url('styles/components/cards.css');
-@import url('styles/components/forms.css');
-@import url('styles/components/navbar.css');
+    /* Dark Theme */
+    --dark-bg: #000000;
+    --dark-text: #ffffff;
+    --dark-primary: #ff7f00;
+    --dark-secondary: #ff4500;
+    --dark-nav-bg: rgba(0, 0, 0, 0.95);
+    --dark-card-bg: rgba(255, 255, 255, 0.1);
 
-/* Import Layout Styles */
-@import url('styles/layouts/header.css');
-@import url('styles/layouts/footer.css');
-@import url('styles/layouts/sections.css');
+    /* Default Theme */
+    --background: var(--dark-bg);
+    --text-color: var(--dark-text);
+    --primary-color: var(--dark-primary);
+    --secondary-color: var(--dark-secondary);
+    --nav-bg: var(--dark-nav-bg);
+    --card-bg: var(--dark-card-bg);
+}
 
-/* Import Utility Styles */
-@import url('styles/utilities/animations.css');
-@import url('styles/utilities/spacing.css');
-@import url('styles/utilities/responsive.css');
+[data-theme="light"] {
+    --background: var(--light-bg);
+    --text-color: var(--light-text);
+    --primary-color: var(--light-primary);
+    --secondary-color: var(--light-secondary);
+    --nav-bg: var(--light-nav-bg);
+    --card-bg: var(--light-card-bg);
+}
+
+/* ======================
+   General Styles
+======================= */
+body {
+    background-color: var(--background);
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section {
+    padding: 6rem 0;
+}
+
+/* ======================
+   Navigation
+======================= */
+.site-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+}
+
+.navbar {
+    padding: 2rem 0;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    color: var(--primary-color);
+    font-size: 2.4rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.nav-links {
+    display: flex;
+    gap: 4rem;
+    list-style: none;
+}
+
+.nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: 500;
+    position: relative;
+    transition: var(--transition);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: var(--transition);
+}
+
+.nav-link:hover::after,
+.nav-link:focus::after {
+    width: 100%;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+    font-size: 2rem;
+    transition: var(--transition);
+    color: var(--text-color);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    color: var(--primary-color);
+}
+
+/* ======================
+   Hero Section
+======================= */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
+                url('hero-bg.jpg') no-repeat center center/cover;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    font-size: 4.8rem;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+    font-size: 2rem;
+    margin-bottom: 4rem;
+    opacity: 0.9;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1.5rem 4rem;
+    background: var(--primary-color);
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    transition: var(--transition);
+}
+
+.cta-button:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* ======================
+   Program Cards
+======================= */
+.program-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+.program-card {
+    background: var(--card-bg);
+    padding: 3rem;
+    border-radius: 1rem;
+    transition: var(--transition);
+    backdrop-filter: blur(5px);
+}
+
+.program-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.program-title {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+/* ======================
+   Gallery
+======================= */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* ======================
+   Forms
+======================= */
+.story-form,
+.contact-form {
+    max-width: 600px;
+    margin: 4rem auto 0;
+}
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: rgba(255, 127, 0, 0.05);
+}
+
+.submit-button {
+    background: var(--primary-color);
+    color: var(--text-color);
+    padding: 1.5rem 4rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.submit-button:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* ======================
+   Footer
+======================= */
+.site-footer {
+    background: var(--nav-bg);
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.copyright {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.social-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.6rem;
+    transition: var(--transition);
+}
+
+.social-link:hover {
+    color: var(--primary-color);
+}
+
+/* ======================
+   Responsive Design
+======================= */
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        background: var(--nav-bg);
+        flex-direction: column;
+        padding: 10rem 2rem;
+        transition: var(--transition);
+    }
+    
+    .nav-active .nav-links {
+        right: 0;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    .hero-content h1 {
+        font-size: 3.6rem;
+    }
+    
+    .program-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+}
