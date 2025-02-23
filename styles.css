@@ -1,58 +1,61 @@
 /* ======================
-   CSS Variables & Reset
+   Theme Variables
 ======================= */
 :root {
-    --primary-color: #ff7f00;
-    --secondary-color: #ff4500;
-    --dark-bg: #000;
-    --text-light: #fff;
-    --transition: all 0.3s ease-in-out;
-    --section-spacing: 6rem;
-    --container-width: 1200px;
+    /* Light Theme */
+    --light-bg: #ffffff;
+    --light-text: #000000;
+    --light-primary: #ff7f00;
+    --light-secondary: #ff4500;
+    --light-nav-bg: rgba(255, 255, 255, 0.95);
+    --light-card-bg: rgba(0, 0, 0, 0.05);
+
+    /* Dark Theme */
+    --dark-bg: #000000;
+    --dark-text: #ffffff;
+    --dark-primary: #ff7f00;
+    --dark-secondary: #ff4500;
+    --dark-nav-bg: rgba(0, 0, 0, 0.95);
+    --dark-card-bg: rgba(255, 255, 255, 0.1);
+
+    /* Default Theme */
+    --background: var(--dark-bg);
+    --text-color: var(--dark-text);
+    --primary-color: var(--dark-primary);
+    --secondary-color: var(--dark-secondary);
+    --nav-bg: var(--dark-nav-bg);
+    --card-bg: var(--dark-card-bg);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    font-size: 62.5%; /* 1rem = 10px */
-}
-
-body {
-    background-color: var(--dark-bg);
-    color: var(--text-light);
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.6rem;
-    line-height: 1.6;
-    overflow-x: hidden;
+[data-theme="light"] {
+    --background: var(--light-bg);
+    --text-color: var(--light-text);
+    --primary-color: var(--light-primary);
+    --secondary-color: var(--light-secondary);
+    --nav-bg: var(--light-nav-bg);
+    --card-bg: var(--light-card-bg);
 }
 
 /* ======================
-   Utility Classes
+   General Styles
 ======================= */
+body {
+    background-color: var(--background);
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 .container {
     width: 90%;
-    max-width: var(--container-width);
+    max-width: 1200px;
     margin: 0 auto;
 }
 
 .section {
-    padding: var(--section-spacing) 0;
-}
-
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
+    padding: 6rem 0;
 }
 
 /* ======================
@@ -63,7 +66,7 @@ body {
     top: 0;
     width: 100%;
     z-index: 1000;
-    background: rgba(0, 0, 0, 0.95);
+    background: var(--nav-bg);
     backdrop-filter: blur(10px);
     transition: var(--transition);
 }
@@ -93,7 +96,7 @@ body {
 }
 
 .nav-link {
-    color: var(--text-light);
+    color: var(--text-color);
     text-decoration: none;
     font-size: 1.8rem;
     font-weight: 500;
@@ -117,57 +120,20 @@ body {
     width: 100%;
 }
 
-/* Mobile Navigation */
-.hamburger {
-    display: none;
+/* Theme Toggle Button */
+.theme-toggle {
     background: none;
     border: none;
     cursor: pointer;
     padding: 1rem;
-    z-index: 1001;
-}
-
-.hamburger-box {
-    width: 3.5rem;
-    height: 2.4rem;
-    display: inline-block;
-    position: relative;
-}
-
-.hamburger-inner {
-    width: 100%;
-    height: 2px;
-    background: var(--text-light);
-    position: absolute;
-    left: 0;
+    font-size: 2rem;
     transition: var(--transition);
+    color: var(--text-color);
 }
 
-.hamburger-inner::before,
-.hamburger-inner::after {
-    content: '';
-    width: 100%;
-    height: 2px;
-    background: var(--text-light);
-    position: absolute;
-    left: 0;
-    transition: var(--transition);
-}
-
-.hamburger-inner::before { top: -1rem }
-.hamburger-inner::after { bottom: -1rem }
-
-/* Active hamburger state */
-.nav-active .hamburger-inner {
-    background: transparent;
-}
-
-.nav-active .hamburger-inner::before {
-    transform: translateY(1rem) rotate(45deg);
-}
-
-.nav-active .hamburger-inner::after {
-    transform: translateY(-1rem) rotate(-45deg);
+.theme-toggle:hover {
+    transform: scale(1.1);
+    color: var(--primary-color);
 }
 
 /* ======================
@@ -201,6 +167,22 @@ body {
     opacity: 0.9;
 }
 
+.cta-button {
+    display: inline-block;
+    padding: 1.5rem 4rem;
+    background: var(--primary-color);
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    transition: var(--transition);
+}
+
+.cta-button:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
 /* ======================
    Program Cards
 ======================= */
@@ -212,7 +194,7 @@ body {
 }
 
 .program-card {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--card-bg);
     padding: 3rem;
     border-radius: 1rem;
     transition: var(--transition);
@@ -277,7 +259,7 @@ textarea {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 0.5rem;
-    color: var(--text-light);
+    color: var(--text-color);
     transition: var(--transition);
 }
 
@@ -290,7 +272,7 @@ textarea:focus {
 
 .submit-button {
     background: var(--primary-color);
-    color: var(--text-light);
+    color: var(--text-color);
     padding: 1.5rem 4rem;
     border: none;
     border-radius: 0.5rem;
@@ -305,41 +287,47 @@ textarea:focus {
 }
 
 /* ======================
-   Animations
+   Footer
 ======================= */
-@media (prefers-reduced-motion: no-preference) {
-    .fade-in {
-        animation: fadeIn 1s ease-out forwards;
-    }
-    
-    .slide-in {
-        animation: slideIn 1s ease-out forwards;
-    }
+.site-footer {
+    background: var(--nav-bg);
+    padding: 4rem 0;
+    text-align: center;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+.copyright {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
 }
 
-@keyframes slideIn {
-    from { opacity: 0; transform: translateX(-50px); }
-    to { opacity: 1; transform: translateX(0); }
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.social-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.6rem;
+    transition: var(--transition);
+}
+
+.social-link:hover {
+    color: var(--primary-color);
 }
 
 /* ======================
    Responsive Design
 ======================= */
 @media (max-width: 768px) {
-    html { font-size: 56.25%; } /* 1rem = 9px */
-    
     .nav-links {
         position: fixed;
         top: 0;
         right: -100%;
         height: 100vh;
         width: 70%;
-        background: var(--dark-bg);
+        background: var(--nav-bg);
         flex-direction: column;
         padding: 10rem 2rem;
         transition: var(--transition);
@@ -363,8 +351,6 @@ textarea:focus {
 }
 
 @media (max-width: 480px) {
-    html { font-size: 50%; } /* 1rem = 8px */
-    
     .hero-content h1 {
         font-size: 3rem;
     }
