@@ -48,9 +48,38 @@
     box-sizing: border-box;
 }
 
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 html {
     scroll-behavior: smooth;
     font-size: 10px;
+}
+
+/* Performance optimization: Use GPU acceleration for animations */
+.program-card,
+.story-card,
+.tier-card,
+.stat-card,
+.cta-button,
+.hero-content {
+    will-change: transform;
+}
+
+.program-card:not(:hover),
+.story-card:not(:hover),
+.tier-card:not(:hover),
+.stat-card:not(:hover) {
+    will-change: auto;
 }
 
 body {
@@ -960,14 +989,36 @@ body::before {
     padding: 4rem 3rem;
     border-radius: 20px;
     text-align: center;
-    transition: var(--transition);
+    transition: var(--transition-smooth);
     border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+}
+
+.tier-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+    background-size: 200% 200%;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+}
+
+.tier-card:hover::before {
+    opacity: 0.5;
+    animation: gradientShift 3s ease infinite;
 }
 
 .tier-card:hover {
-    transform: translateY(-10px);
     border-color: var(--primary-color);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-xl), 0 0 40px rgba(255, 127, 0, 0.3);
 }
 
 .tier-card.featured {

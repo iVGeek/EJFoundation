@@ -204,13 +204,16 @@ faqItems.forEach(item => {
 // Scroll to Top Button
 const scrollToTopBtn = document.getElementById('scrollToTop');
 
-window.addEventListener('scroll', () => {
+// Scroll to Top Button (throttled)
+const handleScroll = throttle(() => {
     if (window.pageYOffset > 300) {
         scrollToTopBtn.classList.add('visible');
     } else {
         scrollToTopBtn.classList.remove('visible');
     }
-});
+}, 100);
+
+window.addEventListener('scroll', handleScroll, { passive: true });
 
 scrollToTopBtn.addEventListener('click', () => {
     window.scrollTo({
@@ -281,7 +284,8 @@ class ParticleSystem {
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
         this.particles = [];
-        this.particleCount = 50;
+        // Reduce particle count on mobile for better performance
+        this.particleCount = window.innerWidth < 768 ? 25 : 50;
         this.init();
     }
 
@@ -385,15 +389,39 @@ revealElements.forEach(element => {
     revealObserver.observe(element);
 });
 
-// Parallax effect for hero background
-window.addEventListener('scroll', () => {
+// Throttle function for performance
+function throttle(func, wait) {
+    let timeout;
+    let lastRan;
+    return function executedFunction(...args) {
+        if (!lastRan) {
+            func.apply(this, args);
+            lastRan = Date.now();
+        } else {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                if ((Date.now() - lastRan) >= wait) {
+                    func.apply(this, args);
+                    lastRan = Date.now();
+                }
+            }, wait - (Date.now() - lastRan));
+        }
+    };
+}
+
+// Parallax effect for hero background (throttled for performance)
+const parallaxEffect = throttle(() => {
     const scrolled = window.pageYOffset;
     const heroContent = document.querySelector('.hero-content');
     if (heroContent && scrolled < window.innerHeight) {
-        heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
-        heroContent.style.opacity = 1 - scrolled / 600;
+        requestAnimationFrame(() => {
+            heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
+            heroContent.style.opacity = 1 - scrolled / 600;
+        });
     }
-});
+}, 16);
+
+window.addEventListener('scroll', parallaxEffect, { passive: true });
 
 // Enhanced card hover effects with 3D tilt
 const cards = document.querySelectorAll('.program-card, .story-card, .tier-card');
