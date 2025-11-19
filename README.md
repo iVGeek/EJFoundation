@@ -1,7 +1,7 @@
-# Elsie's Hope Foundation
+# EJ Hope Foundation
 
 ## Overview
-Elsie's Hope Foundation is dedicated to raising awareness about mental health and providing support to individuals struggling with mental health challenges. Inspired by the memory of Elsie Jelagat, the foundation aims to break the stigma surrounding mental health, promote well-being, and offer resources for those in need.
+EJ Hope Foundation is dedicated to raising awareness about mental health and providing support to individuals struggling with mental health challenges. Inspired by the memory of Elsie Jelagat, the foundation aims to break the stigma surrounding mental health, promote well-being, and offer resources for those in need.
 
 ## Our Mission
 Our mission is to create a world where mental health is openly discussed, understood, and supported. We strive to:
@@ -18,7 +18,7 @@ Our mission is to create a world where mental health is openly discussed, unders
 - **Helpline & Online Support**: Confidential support for individuals in distress.
 
 ## Get Involved
-You can support Elsie's Hope Foundation in the following ways:
+You can support EJ Hope Foundation in the following ways:
 - **Volunteer**: Join our team and help organize events, workshops, and support groups.
 - **Donate**: Contributions help us expand our programs and reach more people in need.
 - **Spread Awareness**: Share our mission and resources to help break the stigma around mental health.
