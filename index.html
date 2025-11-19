@@ -6,6 +6,7 @@
     <meta name="description" content="EJ Hope Foundation - Raising awareness and supporting mental health through community programs and education.">
     <title>EJ Hope Foundation - Mental Health Support & Awareness</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
@@ -45,46 +46,213 @@
     <main id="main-content">
         <!-- Hero Section -->
         <section class="hero" aria-labelledby="hero-heading">
+            <div class="hero-bg-animation"></div>
             <div class="hero-content">
-                <h1 id="hero-heading">Empowering Minds, Changing Lives</h1>
-                <p class="hero-subtext">Join us in raising awareness and supporting mental health.</p>
-                <a href="#involved" class="cta-button">Get Involved</a>
+                <h1 id="hero-heading" class="fade-in-up">Empowering Minds, Changing Lives</h1>
+                <p class="hero-subtext fade-in-up">Join us in raising awareness and supporting mental health.</p>
+                <div class="cta-buttons fade-in-up">
+                    <a href="#donate" class="cta-button primary">Donate Now</a>
+                    <a href="#involved" class="cta-button secondary">Get Involved</a>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section class="section statistics" aria-labelledby="stats-heading">
+            <div class="container">
+                <h2 id="stats-heading" class="section-title">Our Impact in Numbers</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-users stat-icon"></i>
+                        <div class="stat-number" data-target="5000">0</div>
+                        <p class="stat-label">Lives Impacted</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-calendar-check stat-icon"></i>
+                        <div class="stat-number" data-target="150">0</div>
+                        <p class="stat-label">Events Hosted</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-hand-holding-heart stat-icon"></i>
+                        <div class="stat-number" data-target="200">0</div>
+                        <p class="stat-label">Volunteers</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-building stat-icon"></i>
+                        <div class="stat-number" data-target="50">0</div>
+                        <p class="stat-label">Partner Organizations</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- About Section -->
         <section id="about" class="section about" aria-labelledby="about-heading">
             <div class="container">
-                <h2 id="about-heading">Our Story</h2>
+                <h2 id="about-heading" class="section-title">Our Story</h2>
                 <p class="about-text">EJ Hope Foundation was created to honor the memory of Elsie Jelagat. Our mission is to raise awareness, provide support, and break the stigma surrounding mental health.</p>
+                <div class="about-features">
+                    <div class="feature-item">
+                        <i class="fas fa-heart"></i>
+                        <h3>Compassionate Care</h3>
+                        <p>Providing empathetic support to those in need</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>Education & Awareness</h3>
+                        <p>Breaking stigma through knowledge and understanding</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-hands-helping"></i>
+                        <h3>Community Support</h3>
+                        <p>Building strong networks of care and solidarity</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Programs Section -->
         <section id="programs" class="section programs" aria-labelledby="programs-heading">
             <div class="container">
-                <h2 id="programs-heading">Our Programs</h2>
+                <h2 id="programs-heading" class="section-title">Our Programs</h2>
                 <div class="program-grid">
                     <article class="program-card">
+                        <div class="program-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
                         <h3 class="program-title">Mental Health Awareness Marathon</h3>
                         <p class="program-description">Annual community event promoting mental health education and support.</p>
+                        <a href="#contact" class="program-link">Learn More <i class="fas fa-arrow-right"></i></a>
                     </article>
                     <article class="program-card">
+                        <div class="program-icon">
+                            <i class="fas fa-child"></i>
+                        </div>
                         <h3 class="program-title">Children Home Visits</h3>
                         <p class="program-description">Providing support and mentorship for children in care facilities.</p>
+                        <a href="#contact" class="program-link">Learn More <i class="fas fa-arrow-right"></i></a>
                     </article>
                     <article class="program-card">
+                        <div class="program-icon">
+                            <i class="fas fa-user-friends"></i>
+                        </div>
                         <h3 class="program-title">Elderly Home Visits</h3>
                         <p class="program-description">Companionship and mental health support for senior community members.</p>
+                        <a href="#contact" class="program-link">Learn More <i class="fas fa-arrow-right"></i></a>
                     </article>
                     <article class="program-card">
+                        <div class="program-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
                         <h3 class="program-title">University Talks</h3>
                         <p class="program-description">Educational seminars on mental health awareness for students.</p>
+                        <a href="#contact" class="program-link">Learn More <i class="fas fa-arrow-right"></i></a>
                     </article>
                     <article class="program-card">
+                        <div class="program-icon">
+                            <i class="fas fa-book-reader"></i>
+                        </div>
                         <h3 class="program-title">Civic Education</h3>
                         <p class="program-description">Community workshops on mental health rights and resources.</p>
+                        <a href="#contact" class="program-link">Learn More <i class="fas fa-arrow-right"></i></a>
                     </article>
+                    <article class="program-card">
+                        <div class="program-icon">
+                            <i class="fas fa-phone-volume"></i>
+                        </div>
+                        <h3 class="program-title">24/7 Helpline</h3>
+                        <p class="program-description">Round-the-clock support for mental health emergencies and guidance.</p>
+                        <a href="#contact" class="program-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Donation Section -->
+        <section id="donate" class="section donation" aria-labelledby="donate-heading">
+            <div class="container">
+                <h2 id="donate-heading" class="section-title">Support Our Mission</h2>
+                <p class="donation-text">Your contribution helps us reach more people and make a bigger impact in mental health awareness and support.</p>
+                <div class="donation-options">
+                    <div class="donation-card">
+                        <h3>Monthly Support</h3>
+                        <div class="donation-amounts">
+                            <button class="amount-btn" data-amount="10">$10</button>
+                            <button class="amount-btn" data-amount="25">$25</button>
+                            <button class="amount-btn" data-amount="50">$50</button>
+                            <button class="amount-btn" data-amount="100">$100</button>
+                        </div>
+                        <input type="number" class="custom-amount" placeholder="Custom amount">
+                        <button class="cta-button primary">Donate Monthly</button>
+                    </div>
+                    <div class="donation-card">
+                        <h3>One-Time Donation</h3>
+                        <p class="donation-impact">Help us make an immediate impact with a one-time contribution.</p>
+                        <button class="cta-button secondary">Give Once</button>
+                    </div>
+                </div>
+                <div class="donation-progress">
+                    <h3>Current Campaign: New Community Center</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" data-progress="65"></div>
+                    </div>
+                    <p class="progress-text"><span class="progress-current">$65,000</span> raised of <span class="progress-goal">$100,000</span> goal</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="section testimonials" aria-labelledby="testimonials-heading">
+            <div class="container">
+                <h2 id="testimonials-heading" class="section-title">What People Say</h2>
+                <div class="testimonials-slider">
+                    <div class="testimonial-card active">
+                        <div class="testimonial-content">
+                            <i class="fas fa-quote-left quote-icon"></i>
+                            <p class="testimonial-text">"The support I received from EJ Hope Foundation changed my life. They provided not just resources, but genuine care and understanding."</p>
+                            <div class="testimonial-author">
+                                <img src="https://via.placeholder.com/80" alt="Sarah M." class="author-image">
+                                <div class="author-info">
+                                    <h4>Sarah M.</h4>
+                                    <p>Program Participant</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <i class="fas fa-quote-left quote-icon"></i>
+                            <p class="testimonial-text">"Volunteering with EJ Hope has been incredibly rewarding. The team's dedication to mental health advocacy is truly inspiring."</p>
+                            <div class="testimonial-author">
+                                <img src="https://via.placeholder.com/80" alt="Michael K." class="author-image">
+                                <div class="author-info">
+                                    <h4>Michael K.</h4>
+                                    <p>Volunteer</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <i class="fas fa-quote-left quote-icon"></i>
+                            <p class="testimonial-text">"As a partner organization, we've seen firsthand the positive impact of EJ Hope's programs in our community."</p>
+                            <div class="testimonial-author">
+                                <img src="https://via.placeholder.com/80" alt="Dr. Jane L." class="author-image">
+                                <div class="author-info">
+                                    <h4>Dr. Jane L.</h4>
+                                    <p>Healthcare Partner</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-btn prev" aria-label="Previous testimonial"><i class="fas fa-chevron-left"></i></button>
+                    <div class="slider-dots"></div>
+                    <button class="slider-btn next" aria-label="Next testimonial"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
         </section>
@@ -92,11 +260,11 @@
         <!-- Become a Partner Section -->
         <section id="partner" class="section partner" aria-labelledby="partner-heading">
             <div class="container">
-                <h2 id="partner-heading">Become a Partner</h2>
+                <h2 id="partner-heading" class="section-title">Become a Partner</h2>
                 <p class="partner-text">
                     Join us in making a difference! Partner with EJ Hope Foundation to support mental health initiatives and create a lasting impact in our community. Together, we can empower minds and change lives.
                 </p>
-                <a href="#contact" class="cta-button">Partner with Us</a>
+                <a href="#contact" class="cta-button primary">Partner with Us</a>
             </div>
         </section>
 
@@ -108,24 +276,185 @@
                     Your support can transform lives. Sponsor our programs and events to help us raise awareness, provide resources, and break the stigma surrounding mental health. As a sponsor, you’ll receive recognition and the satisfaction of making a real difference.
                 </p>
                 <a href="#contact" class="cta-button">Sponsor Us</a>
+                <div class="sponsor-tiers">
+                    <div class="tier-card">
+                        <i class="fas fa-award tier-icon bronze"></i>
+                        <h3>Bronze Sponsor</h3>
+                        <p class="tier-amount">$1,000+</p>
+                        <ul class="tier-benefits">
+                            <li><i class="fas fa-check"></i> Logo on website</li>
+                            <li><i class="fas fa-check"></i> Event recognition</li>
+                            <li><i class="fas fa-check"></i> Quarterly updates</li>
+                        </ul>
+                    </div>
+                    <div class="tier-card featured">
+                        <i class="fas fa-award tier-icon silver"></i>
+                        <h3>Silver Sponsor</h3>
+                        <p class="tier-amount">$5,000+</p>
+                        <ul class="tier-benefits">
+                            <li><i class="fas fa-check"></i> All Bronze benefits</li>
+                            <li><i class="fas fa-check"></i> Social media shoutouts</li>
+                            <li><i class="fas fa-check"></i> Program naming opportunity</li>
+                        </ul>
+                    </div>
+                    <div class="tier-card">
+                        <i class="fas fa-award tier-icon gold"></i>
+                        <h3>Gold Sponsor</h3>
+                        <p class="tier-amount">$10,000+</p>
+                        <ul class="tier-benefits">
+                            <li><i class="fas fa-check"></i> All Silver benefits</li>
+                            <li><i class="fas fa-check"></i> Board meeting invitations</li>
+                            <li><i class="fas fa-check"></i> Custom partnership package</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Events Section -->
+        <section class="section events" aria-labelledby="events-heading">
+            <div class="container">
+                <h2 id="events-heading" class="section-title">Upcoming Events</h2>
+                <div class="events-grid">
+                    <article class="event-card">
+                        <div class="event-date">
+                            <span class="day">15</span>
+                            <span class="month">MAR</span>
+                        </div>
+                        <div class="event-details">
+                            <h3>Mental Health Awareness Walk</h3>
+                            <p class="event-location"><i class="fas fa-map-marker-alt"></i> Central Park, 9:00 AM</p>
+                            <p class="event-description">Join us for our annual community walk promoting mental health awareness.</p>
+                            <a href="#contact" class="event-link">Register Now <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                    <article class="event-card">
+                        <div class="event-date">
+                            <span class="day">22</span>
+                            <span class="month">MAR</span>
+                        </div>
+                        <div class="event-details">
+                            <h3>Youth Mental Health Workshop</h3>
+                            <p class="event-location"><i class="fas fa-map-marker-alt"></i> Community Center, 2:00 PM</p>
+                            <p class="event-description">Interactive workshop for teens and young adults on coping strategies.</p>
+                            <a href="#contact" class="event-link">Register Now <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                    <article class="event-card">
+                        <div class="event-date">
+                            <span class="day">10</span>
+                            <span class="month">APR</span>
+                        </div>
+                        <div class="event-details">
+                            <h3>Fundraising Gala</h3>
+                            <p class="event-location"><i class="fas fa-map-marker-alt"></i> Grand Hotel, 6:00 PM</p>
+                            <p class="event-description">An evening of inspiration, connection, and fundraising for our programs.</p>
+                            <a href="#contact" class="event-link">Get Tickets <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
             </div>
         </section>
 
         <!-- Impact Stories Section -->
         <section id="stories" class="section stories" aria-labelledby="stories-heading">
             <div class="container">
-                <h2 id="stories-heading">Impact Stories</h2>
+                <h2 id="stories-heading" class="section-title">Impact Stories</h2>
                 <div class="story-grid">
                     <article class="story-card">
-                        <img src="assets/images/story1.jpg" alt="Story 1" loading="lazy">
-                        <h3 class="story-title">John's Journey</h3>
-                        <p class="story-description">John found hope and support through our mental health programs.</p>
+                        <img src="https://via.placeholder.com/400x300" alt="Story 1" loading="lazy">
+                        <div class="story-content">
+                            <h3 class="story-title">John's Journey to Recovery</h3>
+                            <p class="story-description">John found hope and support through our mental health programs. After struggling with depression for years, he discovered a community that understood his challenges and helped him rebuild his life.</p>
+                            <a href="#contact" class="story-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </article>
                     <article class="story-card">
-                        <img src="assets/images/story2.jpg" alt="Story 2" loading="lazy">
-                        <h3 class="story-title">Mary's Recovery</h3>
-                        <p class="story-description">Mary overcame her struggles with the help of our community.</p>
+                        <img src="https://via.placeholder.com/400x300" alt="Story 2" loading="lazy">
+                        <div class="story-content">
+                            <h3 class="story-title">Mary's Path to Wellness</h3>
+                            <p class="story-description">Mary overcame her struggles with anxiety through our support groups and counseling services. Today, she volunteers to help others facing similar challenges.</p>
+                            <a href="#contact" class="story-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </article>
+                    <article class="story-card">
+                        <img src="https://via.placeholder.com/400x300" alt="Story 3" loading="lazy">
+                        <div class="story-content">
+                            <h3 class="story-title">Community Transformation</h3>
+                            <p class="story-description">Our community outreach program has touched thousands of lives, creating safe spaces for open dialogue about mental health.</p>
+                            <a href="#contact" class="story-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section faq" aria-labelledby="faq-heading">
+            <div class="container">
+                <h2 id="faq-heading" class="section-title">Frequently Asked Questions</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How can I get involved with EJ Hope Foundation?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>There are many ways to get involved! You can volunteer at our events, become a mentor, donate to support our programs, or help spread awareness about mental health in your community. Contact us to learn more about specific opportunities.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Are your services confidential?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, all our support services maintain strict confidentiality. We understand the sensitive nature of mental health and ensure that your privacy is protected at all times.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Do you offer professional counseling?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>We provide peer support groups and can connect you with licensed mental health professionals in our network. Our programs complement professional treatment and focus on community support and education.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How are donations used?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Donations directly support our programs including community workshops, support groups, educational materials, and outreach events. We maintain transparency in our finances and provide regular updates to our supporters.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Can I share my story with EJ Hope Foundation?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Absolutely! We welcome and celebrate stories of recovery and resilience. Your story can inspire others and help break the stigma surrounding mental health. Contact us if you'd like to share your experience.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="section newsletter" aria-labelledby="newsletter-heading">
+            <div class="container">
+                <div class="newsletter-content">
+                    <div class="newsletter-text">
+                        <h2 id="newsletter-heading">Stay Updated</h2>
+                        <p>Subscribe to our newsletter for the latest updates, events, and mental health resources.</p>
+                    </div>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit" class="cta-button primary">Subscribe</button>
+                    </form>
                 </div>
             </div>
         </section>
@@ -133,19 +462,33 @@
         <!-- Contact Section -->
         <section id="contact" class="section contact" aria-labelledby="contact-heading">
             <div class="container">
-                <h2 id="contact-heading">Contact Us</h2>
+                <h2 id="contact-heading" class="section-title">Contact Us</h2>
+                <p class="contact-intro">Have questions or want to get involved? We'd love to hear from you!</p>
                 <form class="contact-form" netlify>
-                    <div class="form-group">
-                        <label for="name" class="sr-only">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Name" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="email" class="sr-only">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Email" required>
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="volunteer">Volunteer Opportunity</option>
+                            <option value="partnership">Partnership</option>
+                            <option value="donation">Donation Inquiry</option>
+                            <option value="support">Seeking Support</option>
+                            <option value="other">Other</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label for="message" class="sr-only">Message</label>
-                        <textarea id="message" name="message" placeholder="Message" required></textarea>
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Your message..." required></textarea>
                     </div>
                     <button type="submit" class="submit-button">Send Message</button>
                 </form>
@@ -153,25 +496,59 @@
         </section>
     </main>
 
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <!-- Footer -->
     <footer class="site-footer" aria-labelledby="footer-heading">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3 id="footer-heading">Contact Us</h3>
-                    <p>Email: info@ejhope.org</p>
-                    <p>Phone: +123 456 7890</p>
+                    <h3 id="footer-heading" class="footer-logo">EJ Hope Foundation</h3>
+                    <p class="footer-tagline">Empowering minds, changing lives through mental health awareness and support.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#programs">Programs</a></li>
+                        <li><a href="#donate">Donate</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-envelope"></i> info@ejhope.org</p>
+                    <p><i class="fas fa-phone"></i> +123 456 7890</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Hope Street, City</p>
                 </div>
                 <div class="footer-section">
                     <h3>Follow Us</h3>
                     <div class="social-links">
-                        <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
-                        <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
-                        <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="Twitter">Twitter</a>
+                        <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-            <p class="copyright">&copy; 2025 EJ Hope Foundation. All rights reserved.</p>
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 EJ Hope Foundation. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                </div>
+            </div>
         </div>
     </footer>
 
