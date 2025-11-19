@@ -1,3 +1,11 @@
+// Page Loader
+window.addEventListener('load', () => {
+    const loader = document.querySelector('.page-loader');
+    setTimeout(() => {
+        loader.classList.add('hidden');
+    }, 800);
+});
+
 // Theme Toggle Script
 const themeToggle = document.querySelector('.theme-toggle');
 const themeIcon = document.querySelector('.theme-icon');
@@ -266,3 +274,143 @@ if (newsletterForm) {
         }
     });
 }
+
+// Advanced Particle Background Animation for Hero
+class ParticleSystem {
+    constructor() {
+        this.canvas = document.createElement('canvas');
+        this.ctx = this.canvas.getContext('2d');
+        this.particles = [];
+        this.particleCount = 50;
+        this.init();
+    }
+
+    init() {
+        const heroSection = document.querySelector('.hero');
+        if (!heroSection) return;
+
+        this.canvas.style.position = 'absolute';
+        this.canvas.style.top = '0';
+        this.canvas.style.left = '0';
+        this.canvas.style.width = '100%';
+        this.canvas.style.height = '100%';
+        this.canvas.style.pointerEvents = 'none';
+        this.canvas.style.zIndex = '0';
+        
+        heroSection.insertBefore(this.canvas, heroSection.firstChild);
+        
+        this.resize();
+        this.createParticles();
+        this.animate();
+        
+        window.addEventListener('resize', () => this.resize());
+    }
+
+    resize() {
+        this.canvas.width = this.canvas.offsetWidth;
+        this.canvas.height = this.canvas.offsetHeight;
+    }
+
+    createParticles() {
+        for (let i = 0; i < this.particleCount; i++) {
+            this.particles.push({
+                x: Math.random() * this.canvas.width,
+                y: Math.random() * this.canvas.height,
+                size: Math.random() * 3 + 1,
+                speedX: Math.random() * 0.5 - 0.25,
+                speedY: Math.random() * 0.5 - 0.25,
+                opacity: Math.random() * 0.5 + 0.2
+            });
+        }
+    }
+
+    animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        this.particles.forEach((particle, index) => {
+            particle.x += particle.speedX;
+            particle.y += particle.speedY;
+            
+            if (particle.x < 0 || particle.x > this.canvas.width) particle.speedX *= -1;
+            if (particle.y < 0 || particle.y > this.canvas.height) particle.speedY *= -1;
+            
+            this.ctx.beginPath();
+            this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+            this.ctx.fillStyle = `rgba(255, 127, 0, ${particle.opacity})`;
+            this.ctx.fill();
+            
+            // Draw connections
+            this.particles.forEach((otherParticle, otherIndex) => {
+                if (index !== otherIndex) {
+                    const dx = particle.x - otherParticle.x;
+                    const dy = particle.y - otherParticle.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 100) {
+                        this.ctx.beginPath();
+                        this.ctx.strokeStyle = `rgba(255, 127, 0, ${0.1 * (1 - distance / 100)})`;
+                        this.ctx.lineWidth = 0.5;
+                        this.ctx.moveTo(particle.x, particle.y);
+                        this.ctx.lineTo(otherParticle.x, otherParticle.y);
+                        this.ctx.stroke();
+                    }
+                }
+            });
+        });
+        
+        requestAnimationFrame(() => this.animate());
+    }
+}
+
+// Initialize particle system
+if (document.querySelector('.hero')) {
+    new ParticleSystem();
+}
+
+// Smooth reveal animations with Intersection Observer
+const revealElements = document.querySelectorAll('.section');
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+revealElements.forEach(element => {
+    element.style.opacity = '0';
+    element.style.transform = 'translateY(20px)';
+    element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    revealObserver.observe(element);
+});
+
+// Parallax effect for hero background
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent && scrolled < window.innerHeight) {
+        heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
+        heroContent.style.opacity = 1 - scrolled / 600;
+    }
+});
+
+// Enhanced card hover effects with 3D tilt
+const cards = document.querySelectorAll('.program-card, .story-card, .tier-card');
+cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+    });
+});

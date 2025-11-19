@@ -25,9 +25,11 @@
     --secondary-color: var(--dark-secondary);
     --nav-bg: var(--dark-nav-bg);
     --card-bg: var(--dark-card-bg);
-    --transition: all 0.3s ease;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.2);
+    --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
 [data-theme="light"] {
@@ -59,6 +61,22 @@ body {
     padding: 0;
     transition: background-color 0.3s ease, color 0.3s ease;
     overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 2px 2px, rgba(255, 127, 0, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.5;
 }
 
 .container {
@@ -131,6 +149,36 @@ body {
     100% {
         transform: translateY(10px);
         opacity: 0.5;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color);
+    }
+    50% {
+        box-shadow: 0 0 20px var(--primary-color), 0 0 30px var(--primary-color), 0 0 40px var(--primary-color);
+    }
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
     }
 }
 
@@ -244,9 +292,26 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 20% 50%, rgba(255, 127, 0, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 69, 0, 0.1) 0%, transparent 50%);
-    animation: pulse 8s ease-in-out infinite;
+    background: radial-gradient(circle at 20% 50%, rgba(255, 127, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 69, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 60% 20%, rgba(255, 127, 0, 0.1) 0%, transparent 50%);
+    background-size: 200% 200%;
+    animation: pulse 8s ease-in-out infinite, gradientShift 15s ease infinite;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(45deg, transparent 45%, rgba(255, 127, 0, 0.03) 50%, transparent 55%),
+        linear-gradient(-45deg, transparent 45%, rgba(255, 69, 0, 0.03) 50%, transparent 55%);
+    background-size: 40px 40px;
+    animation: float 20s ease-in-out infinite;
+    pointer-events: none;
 }
 
 [data-theme="light"] .hero {
@@ -290,12 +355,13 @@ body {
     text-decoration: none;
     font-weight: 600;
     border-radius: 50px;
-    transition: var(--transition);
+    transition: var(--transition-smooth);
     font-size: 1.6rem;
     border: none;
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    transform-style: preserve-3d;
 }
 
 .cta-button::before {
@@ -306,19 +372,23 @@ body {
     width: 0;
     height: 0;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.3);
     transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
+    transition: width 0.6s ease, height 0.6s ease;
 }
 
 .cta-button:hover::before {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
 }
 
 .cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(255, 127, 0, 0.3);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(255, 127, 0, 0.4), 0 0 20px rgba(255, 127, 0, 0.3);
+}
+
+.cta-button:active {
+    transform: translateY(-1px) scale(1.02);
 }
 
 .cta-button.primary {
@@ -366,19 +436,43 @@ body {
     padding: 3rem 2rem;
     background: rgba(255, 127, 0, 0.05);
     border-radius: 15px;
-    transition: var(--transition);
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 127, 0, 0.1), transparent);
+    transform: rotate(45deg);
+    transition: var(--transition-smooth);
+}
+
+.stat-card:hover::before {
+    animation: shimmer 1.5s ease infinite;
 }
 
 .stat-card:hover {
-    transform: translateY(-10px);
-    background: rgba(255, 127, 0, 0.1);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-10px) scale(1.05);
+    background: rgba(255, 127, 0, 0.15);
+    box-shadow: var(--shadow-xl), 0 0 40px rgba(255, 127, 0, 0.2);
 }
 
 .stat-icon {
     font-size: 4rem;
     color: var(--primary-color);
     margin-bottom: 1.5rem;
+    transition: var(--transition);
+}
+
+.stat-card:hover .stat-icon {
+    transform: scale(1.2) rotate(10deg);
+    animation: glow 2s ease-in-out infinite;
 }
 
 .stat-number {
@@ -463,11 +557,12 @@ body {
     background: var(--background);
     padding: 3rem;
     border-radius: 15px;
-    transition: var(--transition);
+    transition: var(--transition-smooth);
     backdrop-filter: blur(5px);
     border: 2px solid transparent;
     position: relative;
     overflow: hidden;
+    transform-style: preserve-3d;
 }
 
 .program-card::before {
@@ -482,14 +577,32 @@ body {
     transition: transform 0.3s ease;
 }
 
+.program-card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255, 127, 0, 0.1), transparent);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
 .program-card:hover::before {
     transform: scaleX(1);
 }
 
+.program-card:hover::after {
+    width: 400px;
+    height: 400px;
+}
+
 .program-card:hover {
-    transform: translateY(-10px);
     border-color: var(--primary-color);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-xl), 0 0 30px rgba(255, 127, 0, 0.2);
 }
 
 .program-icon {
@@ -756,8 +869,13 @@ body {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    object-fit: cover;
     border: 3px solid var(--primary-color);
+    transition: var(--transition);
+}
+
+.author-image:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 5px 15px rgba(255, 127, 0, 0.4);
 }
 
 .author-info h4 {
@@ -1016,23 +1134,40 @@ body {
     background: var(--card-bg);
     border-radius: 15px;
     overflow: hidden;
-    transition: var(--transition);
+    transition: var(--transition-smooth);
     box-shadow: var(--shadow);
+    position: relative;
+}
+
+.story-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent, rgba(255, 127, 0, 0.1));
+    opacity: 0;
+    transition: var(--transition);
+    pointer-events: none;
+}
+
+.story-card:hover::before {
+    opacity: 1;
 }
 
 .story-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-xl);
 }
 
-.story-card img {
+.story-illustration {
     width: 100%;
     height: 250px;
-    object-fit: cover;
-    transition: var(--transition);
+    transition: var(--transition-smooth);
 }
 
-.story-card:hover img {
+.story-card:hover .story-illustration {
     transform: scale(1.05);
 }
 
