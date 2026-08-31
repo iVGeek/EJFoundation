@@ -1,0 +1,173 @@
+---
+const programs = [
+  {
+    icon: "running",
+    title: "Mental Health Marathon",
+    description: "Annual community event promoting mental health education, fitness, and solidarity.",
+    link: "#contact"
+  },
+  {
+    icon: "child",
+    title: "Children Home Visits",
+    description: "Providing support, mentorship, and care for children in care facilities.",
+    link: "#contact"
+  },
+  {
+    icon: "elderly",
+    title: "Elderly Home Visits",
+    description: "Companionship and mental health support for senior community members.",
+    link: "#contact"
+  },
+  {
+    icon: "graduation",
+    title: "University Talks",
+    description: "Educational seminars on mental health awareness for students and faculty.",
+    link: "#contact"
+  },
+  {
+    icon: "book",
+    title: "Civic Education",
+    description: "Community workshops on mental health rights, resources, and advocacy.",
+    link: "#contact"
+  },
+  {
+    icon: "phone",
+    title: "24/7 Helpline",
+    description: "Round-the-clock confidential support for mental health emergencies.",
+    link: "#contact"
+  }
+];
+---
+<section id="programs" class="section section--alt" aria-labelledby="programs-heading">
+  <div class="container">
+    <div class="section__header">
+      <h2 id="programs-heading" class="section__title reveal">Our Programs</h2>
+      <p class="section__subtitle reveal reveal-delay-1">Comprehensive initiatives designed to support, educate, and empower individuals across all walks of life.</p>
+    </div>
+    <div class="programs__grid">
+      {programs.map((p, i) => (
+        <article class={`programs__card card reveal reveal-delay-${(i % 4) + 1}`}>
+          <div class="programs__icon">
+            {p.icon === "running" && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="13.5" cy="3.5" r="1.5"/><path d="M7 21l3-7 2.5 2 4.5-5M17 14l-3.5 4-4-2.5L5 21"/></svg>
+            )}
+            {p.icon === "child" && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="3"/><path d="M12 8v4M8 21l2-5h4l2 5M8 12h8"/></svg>
+            )}
+            {p.icon === "elderly" && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="3"/><path d="M12 8v4M9 21l1-5h4l1 5M7 12h10"/></svg>
+            )}
+            {p.icon === "graduation" && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            )}
+            {p.icon === "book" && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            )}
+            {p.icon === "phone" && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            )}
+          </div>
+          <h3 class="programs__title">{p.title}</h3>
+          <p class="programs__desc">{p.description}</p>
+          <a href={p.link} class="programs__link">
+            Learn More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .programs__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+  }
+
+  .programs__card {
+    padding: var(--space-xl) var(--space-lg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .programs__card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-brand);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  .programs__card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .programs__icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,127,0,0.1);
+    border-radius: var(--radius-md);
+    color: var(--orange);
+    margin-bottom: var(--space-md);
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .programs__icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .programs__card:hover .programs__icon {
+    background: var(--gradient-brand);
+    color: #fff;
+    transform: rotate(5deg) scale(1.1);
+  }
+
+  .programs__title {
+    font-size: 1.2rem;
+    margin-bottom: var(--space-sm);
+    color: var(--text-1);
+  }
+
+  .programs__desc {
+    color: var(--text-2);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+  }
+
+  .programs__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--orange);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: gap var(--duration-normal) var(--ease-out);
+  }
+
+  .programs__link svg {
+    width: 16px;
+    height: 16px;
+    transition: transform var(--duration-normal) var(--ease-out);
+  }
+
+  .programs__link:hover {
+    gap: var(--space-sm);
+  }
+
+  .programs__link:hover svg {
+    transform: translateX(4px);
+  }
+</style>

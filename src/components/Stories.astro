@@ -1,0 +1,113 @@
+---
+const stories = [
+  {
+    title: "John's Journey to Recovery",
+    description: "After struggling with depression for years, John discovered a community that understood his challenges and helped him rebuild his life through our mental health programs.",
+    gradient: "linear-gradient(135deg, rgba(255,127,0,0.15), rgba(255,69,0,0.2))"
+  },
+  {
+    title: "Mary's Path to Wellness",
+    description: "Mary overcame her struggles with anxiety through our support groups and counseling services. Today, she volunteers to help others facing similar challenges.",
+    gradient: "linear-gradient(135deg, rgba(255,69,0,0.15), rgba(255,127,0,0.2))"
+  },
+  {
+    title: "Community Transformation",
+    description: "Our community outreach program has touched thousands of lives, creating safe spaces for open dialogue about mental health across diverse communities.",
+    gradient: "linear-gradient(135deg, rgba(255,127,0,0.2), rgba(255,69,0,0.15))"
+  }
+];
+---
+<section id="stories" class="section section--alt" aria-labelledby="stories-heading">
+  <div class="container">
+    <h2 id="stories-heading" class="section__title reveal">Impact Stories</h2>
+    <div class="stories__grid">
+      {stories.map((s, i) => (
+        <article class={`stories__card card reveal reveal-delay-${i + 1}`}>
+          <div class="stories__visual" style={`background: ${s.gradient};`}>
+            <svg viewBox="0 0 120 120" class="stories__illustration">
+              <circle cx="60" cy="40" r="16" fill="rgba(255,127,0,0.6)"/>
+              <path d="M30 90 Q30 65 60 65 Q90 65 90 90 L90 110 L30 110 Z" fill="rgba(255,127,0,0.6)"/>
+              <circle cx="35" cy="75" r="8" fill="rgba(255,69,0,0.4)"/>
+              <circle cx="90" cy="70" r="10" fill="rgba(255,69,0,0.4)"/>
+            </svg>
+          </div>
+          <div class="stories__content">
+            <h3 class="stories__title">{s.title}</h3>
+            <p class="stories__text">{s.description}</p>
+            <a href="#contact" class="stories__link">
+              Read More
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stories__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+  }
+
+  .stories__card {
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .stories__visual {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  .stories__card:hover .stories__visual {
+    transform: scale(1.05);
+  }
+
+  .stories__illustration {
+    width: 120px;
+    height: 120px;
+  }
+
+  .stories__content {
+    padding: var(--space-lg);
+  }
+
+  .stories__title {
+    font-size: 1.2rem;
+    margin-bottom: var(--space-sm);
+    color: var(--orange);
+  }
+
+  .stories__text {
+    font-size: 0.95rem;
+    color: var(--text-2);
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+  }
+
+  .stories__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--orange);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: gap var(--duration-normal) var(--ease-out);
+  }
+
+  .stories__link svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .stories__link:hover {
+    gap: var(--space-sm);
+  }
+</style>

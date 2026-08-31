@@ -1,0 +1,135 @@
+---
+const events = [
+  { day: "15", month: "MAR", title: "Mental Health Awareness Walk", location: "Central Park, 9:00 AM", description: "Join us for our annual community walk promoting mental health awareness and solidarity.", cta: "Register Now" },
+  { day: "22", month: "MAR", title: "Youth Mental Health Workshop", location: "Community Center, 2:00 PM", description: "Interactive workshop for teens and young adults on coping strategies and resilience.", cta: "Register Now" },
+  { day: "10", month: "APR", title: "Fundraising Gala", location: "Grand Hotel, 6:00 PM", description: "An evening of inspiration, connection, and fundraising for our programs.", cta: "Get Tickets" }
+];
+---
+<section class="section" aria-labelledby="events-heading">
+  <div class="container">
+    <h2 id="events-heading" class="section__title reveal">Upcoming Events</h2>
+    <div class="events__grid">
+      {events.map((e, i) => (
+        <article class={`events__card reveal reveal-delay-${i + 1}`}>
+          <div class="events__date">
+            <span class="events__day">{e.day}</span>
+            <span class="events__month">{e.month}</span>
+          </div>
+          <div class="events__details">
+            <h3 class="events__title">{e.title}</h3>
+            <p class="events__location">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              {e.location}
+            </p>
+            <p class="events__desc">{e.description}</p>
+            <a href="#contact" class="events__link">
+              {e.cta}
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .events__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+  }
+
+  .events__card {
+    display: flex;
+    background: var(--surface-2);
+    border: 1px solid var(--surface-3);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .events__card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,127,0,0.3);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .events__date {
+    background: var(--gradient-brand);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 90px;
+    color: #fff;
+  }
+
+  .events__day {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .events__month {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+  }
+
+  .events__details {
+    padding: var(--space-lg);
+    flex: 1;
+  }
+
+  .events__title {
+    font-size: 1.15rem;
+    margin-bottom: var(--space-xs);
+    color: var(--text-1);
+  }
+
+  .events__location {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.85rem;
+    color: var(--orange);
+    margin-bottom: var(--space-sm);
+  }
+
+  .events__location svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  .events__desc {
+    font-size: 0.9rem;
+    color: var(--text-2);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+  }
+
+  .events__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--orange);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: gap var(--duration-normal) var(--ease-out);
+  }
+
+  .events__link svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .events__link:hover {
+    gap: var(--space-sm);
+  }
+</style>

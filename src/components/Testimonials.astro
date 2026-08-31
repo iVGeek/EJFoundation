@@ -1,0 +1,223 @@
+---
+const testimonials = [
+  {
+    text: "The support I received from EJ Hope Foundation changed my life. They provided not just resources, but genuine care and understanding when I needed it most.",
+    author: "Sarah M.",
+    role: "Program Participant",
+    color: "#ff7f00"
+  },
+  {
+    text: "Volunteering with EJ Hope has been incredibly rewarding. The team's dedication to mental health advocacy is truly inspiring and life-changing.",
+    author: "Michael K.",
+    role: "Volunteer",
+    color: "#ff4500"
+  },
+  {
+    text: "As a partner organization, we've seen firsthand the positive impact of EJ Hope's programs in our community. Their approach is both professional and deeply compassionate.",
+    author: "Dr. Jane L.",
+    role: "Healthcare Partner",
+    color: "#ff7f00"
+  }
+];
+---
+<section class="section" aria-labelledby="testimonials-heading">
+  <div class="container">
+    <h2 id="testimonials-heading" class="section__title reveal">What People Say</h2>
+
+    <div class="testimonials reveal reveal-delay-1">
+      <div class="testimonials__track" id="testimonials-track">
+        {testimonials.map((t, i) => (
+          <div class={`testimonials__slide ${i === 0 ? 'active' : ''}`} data-index={i}>
+            <blockquote class="testimonials__quote">
+              <svg class="testimonials__icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+              <p class="testimonials__text">{t.text}</p>
+              <footer class="testimonials__author">
+                <div class="testimonials__avatar" style={`background: ${t.color};`}>
+                  <span>{t.author[0]}</span>
+                </div>
+                <div>
+                  <cite class="testimonials__name">{t.author}</cite>
+                  <span class="testimonials__role">{t.role}</span>
+                </div>
+              </footer>
+            </blockquote>
+          </div>
+        ))}
+      </div>
+
+      <div class="testimonials__controls">
+        <button class="testimonials__btn" id="prev-btn" aria-label="Previous testimonial">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="testimonials__dots" id="testimonials-dots">
+          {testimonials.map((_, i) => (
+            <button class={`testimonials__dot ${i === 0 ? 'active' : ''}`} data-index={i} aria-label={`Go to testimonial ${i + 1}`}></button>
+          ))}
+        </div>
+        <button class="testimonials__btn" id="next-btn" aria-label="Next testimonial">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    max-width: 800px;
+    margin: var(--space-xl) auto 0;
+  }
+
+  .testimonials__track {
+    position: relative;
+    min-height: 320px;
+  }
+
+  .testimonials__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all var(--duration-slow) var(--ease-out);
+    pointer-events: none;
+  }
+
+  .testimonials__slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+    position: relative;
+  }
+
+  .testimonials__quote {
+    background: var(--surface-2);
+    border: 1px solid var(--surface-3);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    position: relative;
+  }
+
+  .testimonials__icon {
+    width: 40px;
+    height: 40px;
+    color: var(--orange);
+    opacity: 0.3;
+    margin-bottom: var(--space-md);
+  }
+
+  .testimonials__text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-1);
+    font-style: italic;
+    margin-bottom: var(--space-lg);
+  }
+
+  .testimonials__author {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .testimonials__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .testimonials__name {
+    display: block;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--text-1);
+  }
+
+  .testimonials__role {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-3);
+  }
+
+  .testimonials__controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+  }
+
+  .testimonials__btn {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-full);
+    background: var(--surface-3);
+    color: var(--text-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--duration-fast);
+  }
+
+  .testimonials__btn:hover {
+    background: var(--orange);
+    color: #fff;
+  }
+
+  .testimonials__btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .testimonials__dots {
+    display: flex;
+    gap: var(--space-sm);
+  }
+
+  .testimonials__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: var(--radius-full);
+    background: var(--surface-4);
+    border: 2px solid transparent;
+    transition: all var(--duration-fast);
+  }
+
+  .testimonials__dot.active {
+    background: var(--orange);
+    transform: scale(1.2);
+  }
+</style>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll('.testimonials__slide');
+  const dots = document.querySelectorAll('.testimonials__dot');
+
+  function show(index: number) {
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  document.getElementById('prev-btn')?.addEventListener('click', () => show(current - 1));
+  document.getElementById('next-btn')?.addEventListener('click', () => show(current + 1));
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => show(parseInt(dot.getAttribute('data-index') || '0')));
+  });
+
+  // Auto-advance
+  let interval = setInterval(() => show(current + 1), 6000);
+  document.querySelector('.testimonials')?.addEventListener('mouseenter', () => clearInterval(interval));
+  document.querySelector('.testimonials')?.addEventListener('mouseleave', () => {
+    interval = setInterval(() => show(current + 1), 6000);
+  });
+</script>

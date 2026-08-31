@@ -1,0 +1,111 @@
+---
+const features = [
+  {
+    icon: "heart",
+    title: "Compassionate Care",
+    text: "Providing empathetic, judgment-free support to those navigating mental health challenges."
+  },
+  {
+    icon: "lightbulb",
+    title: "Education & Awareness",
+    text: "Breaking stigma through knowledge, understanding, and open community dialogue."
+  },
+  {
+    icon: "hands",
+    title: "Community Support",
+    text: "Building strong networks of care, solidarity, and shared resilience."
+  }
+];
+---
+<section id="about" class="section" aria-labelledby="about-heading">
+  <div class="container">
+    <div class="section__header">
+      <h2 id="about-heading" class="section__title reveal">Our Story</h2>
+      <p class="about__text reveal reveal-delay-1">
+        EJ Hope Foundation was created to honor the memory of <strong>Elsie Jelagat</strong>. Our mission is to raise awareness, provide support, and break the stigma surrounding mental health in communities everywhere.
+      </p>
+    </div>
+    <div class="about__features">
+      {features.map((f, i) => (
+        <div class={`about__feature card reveal reveal-delay-${i + 1}`}>
+          <div class="about__feature-icon">
+            {f.icon === "heart" && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            )}
+            {f.icon === "lightbulb" && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg>
+            )}
+            {f.icon === "hands" && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 11V7a5 5 0 0 1 10 0v4M12 22v-6M4 15a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-3H4v3z"/></svg>
+            )}
+          </div>
+          <h3 class="about__feature-title">{f.title}</h3>
+          <p class="about__feature-text">{f.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .about__text {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--text-2);
+    max-width: 700px;
+    margin-inline: auto;
+    line-height: 1.8;
+  }
+
+  .about__text strong {
+    color: var(--orange);
+  }
+
+  .about__features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+  }
+
+  .about__feature {
+    text-align: center;
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  .about__feature-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto var(--space-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,127,0,0.1);
+    border-radius: var(--radius-lg);
+    color: var(--orange);
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .about__feature-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .about__feature:hover .about__feature-icon {
+    background: var(--gradient-brand);
+    color: #fff;
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .about__feature-title {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-sm);
+    color: var(--orange);
+  }
+
+  .about__feature-text {
+    color: var(--text-2);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+</style>

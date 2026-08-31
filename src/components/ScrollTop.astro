@@ -1,0 +1,58 @@
+---
+---
+<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<style>
+  .scroll-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 48px;
+    height: 48px;
+    background: var(--gradient-brand);
+    color: #fff;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all var(--duration-normal) var(--ease-out);
+    z-index: 900;
+    box-shadow: var(--shadow-glow);
+  }
+
+  .scroll-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .scroll-top:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow-strong);
+  }
+
+  .scroll-top svg {
+    width: 22px;
+    height: 22px;
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('scroll-top');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      btn?.classList.add('visible');
+    } else {
+      btn?.classList.remove('visible');
+    }
+  }, { passive: true });
+
+  btn?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>

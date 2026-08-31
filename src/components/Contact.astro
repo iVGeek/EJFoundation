@@ -1,0 +1,121 @@
+---
+---
+<section id="contact" class="section" aria-labelledby="contact-heading">
+  <div class="container container--narrow">
+    <div class="section__header">
+      <h2 id="contact-heading" class="section__title reveal">Contact Us</h2>
+      <p class="section__subtitle reveal reveal-delay-1">Have questions or want to get involved? We'd love to hear from you!</p>
+    </div>
+
+    <form class="contact__form reveal reveal-delay-2" id="contact-form">
+      <div class="contact__row">
+        <div class="contact__group">
+          <label for="contact-name" class="contact__label">Name</label>
+          <input type="text" id="contact-name" name="name" placeholder="Your Name" required class="contact__input">
+        </div>
+        <div class="contact__group">
+          <label for="contact-email" class="contact__label">Email</label>
+          <input type="email" id="contact-email" name="email" placeholder="your.email@example.com" required class="contact__input">
+        </div>
+      </div>
+      <div class="contact__group">
+        <label for="contact-subject" class="contact__label">Subject</label>
+        <select id="contact-subject" name="subject" required class="contact__input">
+          <option value="">Select a subject</option>
+          <option value="volunteer">Volunteer Opportunity</option>
+          <option value="partnership">Partnership</option>
+          <option value="donation">Donation Inquiry</option>
+          <option value="support">Seeking Support</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="contact__group">
+        <label for="contact-message" class="contact__label">Message</label>
+        <textarea id="contact-message" name="message" placeholder="Your message..." required class="contact__input contact__textarea"></textarea>
+      </div>
+      <button type="submit" class="btn btn--primary contact__submit">
+        Send Message
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      </button>
+    </form>
+  </div>
+</section>
+
+<style>
+  .contact__form {
+    margin-top: var(--space-xl);
+  }
+
+  .contact__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+  }
+
+  .contact__group {
+    margin-bottom: var(--space-lg);
+  }
+
+  .contact__label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-1);
+    margin-bottom: var(--space-sm);
+  }
+
+  .contact__input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: var(--surface-2);
+    border: 2px solid var(--surface-3);
+    border-radius: var(--radius-md);
+    color: var(--text-1);
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    transition: border-color var(--duration-fast);
+  }
+
+  .contact__input:focus {
+    outline: none;
+    border-color: var(--orange);
+  }
+
+  .contact__input::placeholder {
+    color: var(--text-3);
+  }
+
+  .contact__textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+
+  .contact__submit {
+    width: 100%;
+    justify-content: center;
+    font-size: 1.05rem;
+    padding: 1rem;
+  }
+
+  @media (max-width: 600px) {
+    .contact__row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById('contact-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const name = (form.querySelector('#contact-name') as HTMLInputElement)?.value.trim();
+    const email = (form.querySelector('#contact-email') as HTMLInputElement)?.value.trim();
+    const message = (form.querySelector('#contact-message') as HTMLTextAreaElement)?.value.trim();
+    if (name && email && message) {
+      alert('Thank you for your message! We will get back to you soon.');
+      form.reset();
+    } else {
+      alert('Please fill in all required fields.');
+    }
+  });
+</script>
