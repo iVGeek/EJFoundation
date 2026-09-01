@@ -70,14 +70,15 @@ import '../styles/global.css';
     counters.forEach(el=>countObs.observe(el));
 
     // Smooth scroll for anchors (with offset for sticky headers)
+    const getOffset=()=>parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'))+parseInt(getComputedStyle(document.documentElement).getPropertyValue('--crisis-h'))+10;
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click',e=>{
         const id=a.getAttribute('href');if(!id||id==='#')return;
         const target=document.querySelector(id);if(!target)return;
         e.preventDefault();
-        const off=110;
+        const off=id==='#top'?0:getOffset();
         const top=target.getBoundingClientRect().top+window.pageYOffset-off;
-        window.scrollTo({top,behavior:'smooth'});
+        window.scrollTo({top:Math.max(top,0),behavior:'smooth'});
       });
     });
   </script>

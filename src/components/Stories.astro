@@ -56,12 +56,13 @@ const stories = [
   }
   .story__slide.is-active{opacity:1;transform:translateY(0) scale(1);position:relative;pointer-events:auto;}
   .story__slide::before{
-    content:'“';position:absolute;top:-20px;left:2rem;
-    font-family:var(--font-display);font-size:8rem;color:rgba(201,106,60,.18);line-height:1;
+    content:'“';position:absolute;top:-24px;left:50%;transform:translateX(-50%);
+    font-family:var(--font-display);font-size:7.5rem;line-height:1;
+    color:var(--terra);opacity:.16;
   }
   .story__quote{
     font-family:var(--font-display);font-style:italic;
-    font-size:clamp(1.5rem,3.2vw,2.1rem);line-height:1.35;color:var(--ink);
+    font-size:clamp(1.5rem,3.2vw,2.05rem);line-height:1.35;color:var(--ink);
     max-width:680px;margin:0 auto 2rem;
   }
   .story__who{display:flex;align-items:center;justify-content:center;gap:1rem;}

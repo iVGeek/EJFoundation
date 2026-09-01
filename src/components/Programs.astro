@@ -44,10 +44,11 @@ const programs = [
     transition:transform .25s var(--ease-out),border-color .25s,box-shadow .25s;
   }
   .prog:hover{border-color:var(--terra);transform:translateX(10px);box-shadow:var(--card-shadow);}
+  .prog:hover .prog__num{color:var(--terra-deep);}
 
   .prog__num{
     font-family:var(--font-display);font-size:2.4rem;color:var(--terra);
-    width:64px;flex-shrink:0;text-align:center;
+    width:64px;flex-shrink:0;text-align:center;transition:color .3s;
   }
   .prog__body{flex:1;}
   .prog__tagrow{margin-bottom:.25rem;}

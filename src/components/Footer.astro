@@ -65,10 +65,19 @@
       </div>
     </div>
   </div>
+  <div class="footer__wordmark" aria-hidden="true">hope</div>
 </footer>
 
 <style>
-  .footer{background:var(--cream-2);border-top:1px solid var(--line);padding:clamp(3rem,7vw,4.5rem) 0 1.5rem;margin-top:4rem;}
+  .footer{background:var(--cream-2);border-top:1px solid var(--line);padding:clamp(3rem,7vw,4.5rem) 0 1.5rem;margin-top:4rem;position:relative;overflow:hidden;}
+  .footer__wordmark{
+    position:absolute;left:50%;bottom:-.18em;transform:translateX(-50%);
+    font-family:var(--font-display);font-style:italic;
+    font-size:clamp(8rem,26vw,22rem);line-height:.72;
+    color:rgba(201,106,60,.07);pointer-events:none;user-select:none;white-space:nowrap;
+    z-index:0;
+  }
+  .footer .container{position:relative;z-index:1;}
   .footer__grid{display:grid;grid-template-columns:1.5fr 1fr 1.2fr 1.2fr;gap:2.5rem;margin-bottom:3rem;}
   .footer__logo{display:flex;align-items:center;gap:.6rem;font-family:var(--font-display);font-size:1.4rem;margin-bottom:1rem;color:var(--ink);}
   .footer__logo .mark{color:var(--terra);}

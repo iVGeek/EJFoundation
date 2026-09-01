@@ -63,8 +63,8 @@
     background:var(--terra);border-radius:2px;
     transition:width .3s var(--ease-out);
   }
-  .nav__link:hover{color:var(--terra);}
-  .nav__link:hover::after{width:100%;}
+  .nav__link:hover,.nav__link.is-active{color:var(--terra);}
+  .nav__link.is-active::after{width:100%;}
 
   .nav__actions{display:flex;align-items:center;gap:.9rem;}
   .nav__donate{padding:.6rem 1.3rem;font-size:.9rem;}
@@ -98,6 +98,25 @@
   window.addEventListener('scroll',()=>{
     nav?.classList.toggle('is-scrolled',window.scrollY>40);
   },{passive:true});
+
+  // Scroll spy — highlight nav link for section in view
+  const linkEls=Array.from(document.querySelectorAll('.nav__link'));
+  const sections=linkEls.map(l=>{
+    const id=l.getAttribute('href');
+    return id&&id.startsWith('#')?document.querySelector(id):null;
+  }).filter(Boolean);
+  const spy=()=>{
+    const probe=window.scrollY+(window.innerHeight*.33);
+    let current=null,currentTop=-1;
+    sections.forEach(sec=>{
+      const top=sec.offsetTop;
+      if(top<=probe&&top>currentTop){current=sec.id;currentTop=top;}
+    });
+    linkEls.forEach(l=>l.classList.toggle('is-active',l.getAttribute('href')==='#'+current));
+  };
+  window.addEventListener('scroll',spy,{passive:true});
+  window.addEventListener('resize',spy,{passive:true});
+  spy();
 
   burger?.addEventListener('click',()=>{
     const open=burger.getAttribute('aria-expanded')==='true';

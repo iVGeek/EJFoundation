@@ -3,12 +3,16 @@
 <section class="newsletter">
   <div class="container newsletter__wrap">
     <div class="newsletter__text reveal">
+      <div class="newsletter__kicker">The monthly letter</div>
       <h2 class="newsletter__title">Stay close to the story</h2>
       <p class="newsletter__sub">Monthly impact stories, resources, and updates. No spam — ever.</p>
     </div>
     <form class="newsletter__form reveal reveal-d2" id="newsletter-form">
-      <input type="email" placeholder="Your email address" required class="newsletter__input" aria-label="Email address">
-      <button type="submit" class="btn btn--primary newsletter__btn">Subscribe</button>
+      <div class="newsletter__field">
+        <input type="email" placeholder="Your email address" required class="newsletter__input" aria-label="Email address">
+        <button type="submit" class="btn btn--primary newsletter__btn">Subscribe</button>
+      </div>
+      <p class="newsletter__fine">One thoughtful email a month. Unsubscribe anytime.</p>
     </form>
   </div>
 </section>
@@ -19,14 +23,17 @@
   .newsletter::before{top:-120px;left:-60px;}
   .newsletter::after{bottom:-140px;right:-40px;}
   .newsletter__wrap{position:relative;display:flex;align-items:center;justify-content:space-between;gap:2.5rem;flex-wrap:wrap;color:#fff;}
+  .newsletter__kicker{font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:.5rem;}
   .newsletter__title{font-size:clamp(1.7rem,4vw,2.5rem);color:#fff;margin-bottom:.4rem;}
   .newsletter__sub{opacity:.95;font-size:1rem;color:rgba(255,255,255,.95);}
-  .newsletter__form{display:flex;gap:.6rem;flex:1;min-width:300px;max-width:470px;}
+  .newsletter__form{flex:1;min-width:300px;max-width:470px;}
+  .newsletter__field{display:flex;gap:.6rem;}
   .newsletter__input{flex:1;padding:.9rem 1.3rem;border:none;border-radius:var(--radius-full);font-size:.95rem;background:rgba(255,255,255,.2);color:#fff;font-family:var(--font-body);}
   .newsletter__input::placeholder{color:rgba(255,255,255,.8);}
   .newsletter__input:focus{outline:none;background:rgba(255,255,255,.3);}
   .newsletter__btn{white-space:nowrap;background:var(--brown);box-shadow:0 8px 24px rgba(61,46,36,.3);}
   .newsletter__btn:hover{background:#4b3828;}
+  .newsletter__fine{font-size:.76rem;opacity:.8;margin-top:.55rem;color:rgba(255,255,255,.85);}
   @media(max-width:640px){.newsletter__form{min-width:100%;}}
 </style>
 

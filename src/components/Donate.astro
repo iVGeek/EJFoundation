@@ -100,7 +100,9 @@ const tiers=[
   .donate__campaign-pct{font-family:var(--font-display);font-size:1.3rem;color:#f0b48a;}
   .donate__campaign-title{font-size:1.2rem;color:var(--on-dark);margin-bottom:1rem;}
   .donate__bar{height:13px;background:rgba(250,244,234,.15);border-radius:var(--radius-full);overflow:hidden;margin-bottom:.8rem;}
-  .donate__fill{height:100%;width:0;background:linear-gradient(90deg,#f0b48a,#c96a3c);border-radius:var(--radius-full);transition:width 1.6s var(--ease-out);}
+  .donate__fill{height:100%;width:0;background:linear-gradient(90deg,#f0b48a,#c96a3c);border-radius:var(--radius-full);transition:width 1.6s var(--ease-out);position:relative;}
+  .donate__fill::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);animation:donate-shimmer 2.4s infinite;}
+  @keyframes donate-shimmer{0%{transform:translateX(-100%);}100%{transform:translateX(100%);}}
   .donate__campaign-nums{display:flex;align-items:baseline;gap:.6rem;}
   .donate__raised{font-family:var(--font-display);font-size:1.6rem;color:#f0b48a;}
   .donate__goal{font-size:.85rem;color:rgba(250,244,234,.7);}
