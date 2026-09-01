@@ -1,0 +1,91 @@
+---
+const ways=[
+  { title:'Volunteer', desc:'Lend your time and heart to events, home visits, and workshops.', cta:'Volunteer with us' },
+  { title:'Become a Partner', desc:'Work with us to reach more people and amplify impact.', cta:'Partner with us' },
+  { title:'Spread Awareness', desc:'Share our resources and help break the stigma in your circle.', cta:'Share the mission' }
+];
+
+const tiers=[
+  { name:'Bronze', amount:'$1,000+', color:'#a9703f', feats:['Logo on our website','Event recognition','Quarterly impact updates'] },
+  { name:'Silver', amount:'$5,000+', color:'#8b8b8b', featured:true, feats:['All Bronze benefits','Social media shoutouts','Program naming opportunity'] },
+  { name:'Gold', amount:'$10,000+', color:'#c99a2e', feats:['All Silver benefits','Board meeting invitations','Custom partnership package'] }
+];
+---
+<section id="get-involved" class="section section--alt">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <span class="section-eyebrow reveal">Get Involved</span>
+      <h2 class="section-title reveal">Many ways to <em>make a difference</em></h2>
+      <p class="section-sub reveal">Whether you have an hour, a skill, or a platform — there's a place for you here.</p>
+    </div>
+
+    <div class="involved__ways">
+      {ways.map((w,i)=>(
+        <div class={`involved__way reveal reveal-d${(i%3)+1}`}>
+          <div class="involved__icon">{['01','02','03'][i]}</div>
+          <h3 class="involved__title">{w.title}</h3>
+          <p class="involved__desc">{w.desc}</p>
+          <a href="#contact" class="involved__link">{w.cta} <span aria-hidden="true">→</span></a>
+        </div>
+      ))}
+    </div>
+
+    <div class="involved__sponsor">
+      <div class="section-head section-head--center" style="margin-top:4rem;">
+        <span class="section-eyebrow reveal">Sponsorship</span>
+        <h2 class="section-title reveal">Sponsor & <em>transform lives</em></h2>
+        <p class="section-sub reveal">Visibility for your brand. Hope for our community. A partnership with real purpose.</p>
+      </div>
+
+      <div class="involved__tiers">
+        {tiers.map((t,i)=>(
+          <div class={`involved__tier reveal reveal-d${(i%3)+1} ${t.featured?'is-featured':''}`}>
+            {t.featured && <span class="involved__pop">Most popular</span>}
+            <div class="involved__medal" style={`color:${t.color}`}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+            </div>
+            <h3 class="involved__tier-name">{t.name}</h3>
+            <p class="involved__tier-amt" style={`color:${t.color}`}>{t.amount}</p>
+            <ul class="involved__feats">
+              {t.feats.map(f=>(
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>{f}</li>
+              ))}
+            </ul>
+            <a href="#contact" class={`btn ${t.featured?'btn--primary':'btn--outline'} involved__tier-btn`}>Select {t.name}</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .involved__ways{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;}
+  .involved__way{padding:2.2rem 2rem;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--card-shadow);transition:transform .3s var(--ease-out),box-shadow .3s,border-color .3s;}
+  .involved__way:hover{transform:translateY(-6px);border-color:var(--terra);box-shadow:var(--card-shadow-lg);}
+  .involved__icon{
+    width:64px;height:64px;margin:0 auto 1.2rem;border-radius:var(--radius-lg);
+    background:var(--grad-brand);color:#fff;display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-display);font-size:1.5rem;box-shadow:var(--glow-soft);
+  }
+  .involved__title{font-size:1.4rem;margin-bottom:.5rem;color:var(--ink);}
+  .involved__desc{color:var(--muted);font-size:.93rem;line-height:1.7;margin-bottom:1.1rem;}
+  .involved__link{color:var(--terra);font-weight:800;font-size:.92rem;}
+
+  .involved__tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;align-items:start;}
+  .involved__tier{padding:2.3rem 2rem;text-align:center;position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--card-shadow);}
+  .involved__tier.is-featured{border-color:var(--terra);transform:scale(1.04);box-shadow:var(--card-shadow-lg);}
+  .involved__tier.is-featured:hover{transform:scale(1.06);}
+  .involved__tier:not(.is-featured):hover{transform:translateY(-6px);border-color:var(--terra);}
+  .involved__pop{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--grad-brand);color:#fff;font-size:.68rem;font-weight:800;padding:.35rem .9rem;border-radius:var(--radius-full);white-space:nowrap;box-shadow:var(--glow-soft);}
+  .involved__medal svg{width:46px;height:46px;margin:0 auto .8rem;}
+  .involved__tier-name{font-size:1.4rem;color:var(--ink);}
+  .involved__tier-amt{font-family:var(--font-display);font-size:2.2rem;margin:.3rem 0 1.2rem;}
+  .involved__feats{text-align:left;margin-bottom:1.6rem;}
+  .involved__feats li{display:flex;align-items:center;gap:.6rem;padding:.55rem 0;color:var(--ink-2);font-size:.9rem;border-bottom:1px solid var(--line);}
+  .involved__feats li:last-child{border-bottom:none;}
+  .involved__feats svg{width:16px;height:16px;color:var(--terra);flex-shrink:0;}
+  .involved__tier-btn{width:100%;justify-content:center;}
+
+  @media(max-width:900px){.involved__ways,.involved__tiers{grid-template-columns:1fr;}.involved__tier.is-featured{transform:none;}.involved__tier.is-featured:hover{transform:translateY(-6px);}}
+</style>

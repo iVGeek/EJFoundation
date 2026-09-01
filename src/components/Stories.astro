@@ -1,113 +1,105 @@
 ---
 const stories = [
-  {
-    title: "John's Journey to Recovery",
-    description: "After struggling with depression for years, John discovered a community that understood his challenges and helped him rebuild his life through our mental health programs.",
-    gradient: "linear-gradient(135deg, rgba(255,127,0,0.15), rgba(255,69,0,0.2))"
-  },
-  {
-    title: "Mary's Path to Wellness",
-    description: "Mary overcame her struggles with anxiety through our support groups and counseling services. Today, she volunteers to help others facing similar challenges.",
-    gradient: "linear-gradient(135deg, rgba(255,69,0,0.15), rgba(255,127,0,0.2))"
-  },
-  {
-    title: "Community Transformation",
-    description: "Our community outreach program has touched thousands of lives, creating safe spaces for open dialogue about mental health across diverse communities.",
-    gradient: "linear-gradient(135deg, rgba(255,127,0,0.2), rgba(255,69,0,0.15))"
-  }
+  { name:'Sarah M.', role:'Program participant', text:'The moment I realized I wasn\'t alone, something in me began to heal. EJ Hope gave me a safe place to land.' },
+  { name:'Michael K.', role:'Volunteer', text:'Volunteering here changed how I see mental health — and how I see myself. Every conversation is a chance to catch someone before they fall.' },
+  { name:'Dr. Jane L.', role:'Healthcare partner', text:'We\'ve seen the ripple effect of EJ Hope\'s work. Real people, real change. It\'s the kind of care every community deserves.' },
+  { name:'Daniel O.', role:'University talk attendee', text:'I walked into a university talk expecting nothing. I walked out knowing I could ask for help. That\'s everything.' }
 ];
 ---
-<section id="stories" class="section section--alt" aria-labelledby="stories-heading">
+<section id="stories" class="section stories">
   <div class="container">
-    <h2 id="stories-heading" class="section__title reveal">Impact Stories</h2>
-    <div class="stories__grid">
-      {stories.map((s, i) => (
-        <article class={`stories__card card reveal reveal-delay-${i + 1}`}>
-          <div class="stories__visual" style={`background: ${s.gradient};`}>
-            <svg viewBox="0 0 120 120" class="stories__illustration">
-              <circle cx="60" cy="40" r="16" fill="rgba(255,127,0,0.6)"/>
-              <path d="M30 90 Q30 65 60 65 Q90 65 90 90 L90 110 L30 110 Z" fill="rgba(255,127,0,0.6)"/>
-              <circle cx="35" cy="75" r="8" fill="rgba(255,69,0,0.4)"/>
-              <circle cx="90" cy="70" r="10" fill="rgba(255,69,0,0.4)"/>
-            </svg>
-          </div>
-          <div class="stories__content">
-            <h3 class="stories__title">{s.title}</h3>
-            <p class="stories__text">{s.description}</p>
-            <a href="#contact" class="stories__link">
-              Read More
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-        </article>
-      ))}
+    <div class="section-head section-head--center">
+      <span class="section-eyebrow reveal">Stories of Hope</span>
+      <h2 class="section-title reveal">Real voices, <em>real healing</em></h2>
+    </div>
+
+    <div class="story" id="story-slider">
+      <div class="story__track" id="story-track">
+        {stories.map((s,i)=>(
+          <figure class={`story__slide ${i===0?'is-active':''}`} data-i={i}>
+            <p class="story__quote">"{s.text}"</p>
+            <figcaption class="story__who">
+              <span class="story__avatar">{s.name[0]}</span>
+              <span class="story__meta"><span class="story__name">{s.name}</span><span class="story__role">{s.role}</span></span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <div class="story__controls">
+        <button class="story__btn" id="story-prev" aria-label="Previous story">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="story__dots" id="story-dots">
+          {stories.map((_,i)=>(
+            <button class={`story__dot ${i===0?'is-active':''}`} data-i={i} aria-label={`Story ${i+1}`}></button>
+          ))}
+        </div>
+        <button class="story__btn" id="story-next" aria-label="Next story">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  .stories__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: var(--space-lg);
-    margin-top: var(--space-xl);
+  .stories{background:var(--cream-2);}
+  .story{max-width:820px;margin:0 auto;position:relative;}
+  .story__track{position:relative;min-height:300px;}
+  .story__slide{
+    position:absolute;inset:0;opacity:0;transform:translateY(20px) scale(.99);
+    transition:all .7s var(--ease-out);pointer-events:none;
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius-xl);
+    padding:clamp(2.5rem,6vw,4rem) clamp(2rem,5vw,3.5rem);
+    text-align:center;box-shadow:var(--card-shadow);
   }
+  .story__slide.is-active{opacity:1;transform:translateY(0) scale(1);position:relative;pointer-events:auto;}
+  .story__slide::before{
+    content:'“';position:absolute;top:-20px;left:2rem;
+    font-family:var(--font-display);font-size:8rem;color:rgba(201,106,60,.18);line-height:1;
+  }
+  .story__quote{
+    font-family:var(--font-display);font-style:italic;
+    font-size:clamp(1.5rem,3.2vw,2.1rem);line-height:1.35;color:var(--ink);
+    max-width:680px;margin:0 auto 2rem;
+  }
+  .story__who{display:flex;align-items:center;justify-content:center;gap:1rem;}
+  .story__avatar{
+    width:54px;height:54px;border-radius:50%;
+    background:var(--grad-brand);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-display);font-size:1.4rem;
+    box-shadow:var(--glow-soft);
+  }
+  .story__meta{display:flex;flex-direction:column;text-align:left;}
+  .story__name{font-weight:800;color:var(--ink);}
+  .story__role{color:var(--muted);font-size:.85rem;}
 
-  .stories__card {
-    overflow: hidden;
-    padding: 0;
+  .story__controls{display:flex;align-items:center;justify-content:center;gap:1.2rem;margin-top:2rem;}
+  .story__btn{
+    width:46px;height:46px;border-radius:50%;
+    background:#fff;border:1px solid var(--line);color:var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    transition:all .3s var(--ease-out);
   }
-
-  .stories__visual {
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform var(--duration-slow) var(--ease-out);
-  }
-
-  .stories__card:hover .stories__visual {
-    transform: scale(1.05);
-  }
-
-  .stories__illustration {
-    width: 120px;
-    height: 120px;
-  }
-
-  .stories__content {
-    padding: var(--space-lg);
-  }
-
-  .stories__title {
-    font-size: 1.2rem;
-    margin-bottom: var(--space-sm);
-    color: var(--orange);
-  }
-
-  .stories__text {
-    font-size: 0.95rem;
-    color: var(--text-2);
-    line-height: 1.7;
-    margin-bottom: var(--space-md);
-  }
-
-  .stories__link {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
-    color: var(--orange);
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: gap var(--duration-normal) var(--ease-out);
-  }
-
-  .stories__link svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  .stories__link:hover {
-    gap: var(--space-sm);
-  }
+  .story__btn:hover{background:var(--terra);color:#fff;border-color:var(--terra);box-shadow:var(--glow-soft);}
+  .story__btn svg{width:20px;height:20px;}
+  .story__dots{display:flex;gap:.5rem;}
+  .story__dot{width:10px;height:10px;border-radius:50%;background:var(--cream-3);transition:all .3s var(--ease-out);}
+  .story__dot.is-active{background:var(--terra);transform:scale(1.25);}
 </style>
+
+<script>
+  let idx=0;
+  const slides=Array.from(document.querySelectorAll('.story__slide'));
+  const dots=Array.from(document.querySelectorAll('.story__dot'));
+  function show(n){idx=(n+slides.length)%slides.length;slides.forEach((s,i)=>s.classList.toggle('is-active',i===idx));dots.forEach((d,i)=>d.classList.toggle('is-active',i===idx));}
+  document.getElementById('story-prev')?.addEventListener('click',()=>show(idx-1));
+  document.getElementById('story-next')?.addEventListener('click',()=>show(idx+1));
+  dots.forEach(d=>d.addEventListener('click',()=>show(parseInt(d.dataset.i||'0'))));
+  let auto=setInterval(()=>show(idx+1),6000);
+  const slider=document.getElementById('story-slider');
+  slider?.addEventListener('mouseenter',()=>clearInterval(auto));
+  slider?.addEventListener('mouseleave',()=>auto=setInterval(()=>show(idx+1),6000));
+</script>

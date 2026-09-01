@@ -1,196 +1,147 @@
 ---
-const amounts = [10, 25, 50, 100];
+const tiers=[
+  { amount:25, impact:'Funds a workshop' },
+  { amount:50, impact:'Materials for a visit' },
+  { amount:100, impact:'Keeps helpline running' },
+  { amount:250, impact:'A week of talks' }
+];
 ---
-<section id="donate" class="section" aria-labelledby="donate-heading">
+<section id="donate" class="section">
   <div class="container">
-    <div class="section__header">
-      <h2 id="donate-heading" class="section__title reveal">Support Our Mission</h2>
-      <p class="section__subtitle reveal reveal-delay-1">Your contribution helps us reach more people and create lasting impact in mental health awareness.</p>
-    </div>
+    <div class="donate-card">
+      <div class="donate-card__grid">
+        <!-- Copy -->
+        <div class="donate__copy reveal">
+          <div class="donate__kicker">Support the mission</div>
+          <h2 class="donate__title">Your kindness <em>becomes hope</em></h2>
+          <p class="donate__text">Every contribution — big or small — goes directly into programs that lift people out of isolation and into support. When you give, someone finds the courage to reach out.</p>
 
-    <div class="donate__grid">
-      <div class="donate__card card reveal reveal-delay-1">
-        <h3 class="donate__card-title">Monthly Support</h3>
-        <p class="donate__card-text">Become a sustaining supporter with recurring monthly donations.</p>
-        <div class="donate__amounts">
-          {amounts.map(a => (
-            <button class="donate__amount" data-amount={a}>${a}</button>
-          ))}
+          <div class="donate__campaign">
+            <div class="donate__campaign-top">
+              <span class="donate__campaign-label">Current campaign</span>
+              <span class="donate__campaign-pct">65%</span>
+            </div>
+            <div class="donate__campaign-title">New Community Center</div>
+            <div class="donate__bar"><div class="donate__fill" data-progress="65"></div></div>
+            <div class="donate__campaign-nums">
+              <span class="donate__raised">$65,000</span>
+              <span class="donate__goal">of $100,000 goal</span>
+            </div>
+          </div>
         </div>
-        <input type="number" class="donate__custom" placeholder="Custom amount" min="1">
-        <button class="btn btn--primary donate__btn">Donate Monthly</button>
-      </div>
 
-      <div class="donate__card card reveal reveal-delay-2">
-        <h3 class="donate__card-title">One-Time Donation</h3>
-        <p class="donate__card-text">Make an immediate impact with a single contribution of any size.</p>
-        <div class="donate__amounts">
-          {amounts.map(a => (
-            <button class="donate__amount" data-amount={a}>${a}</button>
-          ))}
+        <!-- Form -->
+        <div class="donate__panel reveal reveal-d2">
+          <div class="donate__panel-title">Make a difference today</div>
+          <div class="donate__panel-sub">One-time or monthly — your choice.</div>
+
+          <div class="donate__tiers">
+            {tiers.map(t=>(
+              <label class="donate__tier">
+                <input type="radio" name="amount" value={t.amount} class="sr-only">
+                <span class="donate__tier-amt">${t.amount}</span>
+                <span class="donate__tier-impact">{t.impact}</span>
+              </label>
+            ))}
+          </div>
+
+          <div class="donate__custom-row">
+            <span class="donate__custom-prefix">$</span>
+            <input type="number" class="donate__custom" id="custom-amount" placeholder="Custom amount" min="1">
+          </div>
+
+          <div class="donate__freq">
+            <button class="donate__freq-btn is-active" data-freq="once">Give once</button>
+            <button class="donate__freq-btn" data-freq="monthly">Monthly</button>
+          </div>
+
+          <button class="btn btn--light donate__cta" id="donate-cta">
+            Donate Now
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </button>
+
+          <div class="donate__trust">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            100% goes to programs · Secure & confidential
+          </div>
         </div>
-        <input type="number" class="donate__custom" placeholder="Custom amount" min="1">
-        <button class="btn btn--secondary donate__btn">Give Once</button>
-      </div>
-    </div>
-
-    <div class="donate__progress card reveal reveal-delay-3">
-      <h3 class="donate__progress-title">Current Campaign: New Community Center</h3>
-      <div class="donate__bar">
-        <div class="donate__fill" data-progress="65"></div>
-      </div>
-      <div class="donate__progress-text">
-        <span class="donate__raised">$65,000</span> raised of <span class="donate__goal">$100,000</span> goal
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  .donate__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: var(--space-lg);
-    margin-bottom: var(--space-lg);
+  .donate-card{
+    position:relative;
+    background:var(--grad-deep);
+    border-radius:var(--radius-xl);
+    padding:clamp(2.5rem,6vw,4rem);
+    color:var(--on-dark);
+    overflow:hidden;
+    box-shadow:var(--card-shadow-lg);
   }
+  .donate-card::after{
+    content:'';position:absolute;right:-80px;top:-80px;width:320px;height:320px;
+    background:radial-gradient(circle,rgba(201,106,60,.4),transparent 70%);border-radius:50%;
+  }
+  .donate-card__grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,3rem);align-items:center;}
 
-  .donate__card {
-    text-align: center;
-    padding: var(--space-xl);
+  .donate__kicker{
+    font-size:.72rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
+    color:#f0b48a;margin-bottom:1rem;
   }
+  .donate__title{font-size:clamp(2.2rem,4.5vw,3rem);line-height:1.05;color:var(--on-dark);margin-bottom:1.2rem;}
+  .donate__title em{font-style:italic;color:#f0b48a;}
+  .donate__text{color:rgba(250,244,234,.82);line-height:1.8;max-width:440px;margin-bottom:2rem;}
 
-  .donate__card-title {
-    font-size: 1.5rem;
-    color: var(--orange);
-    margin-bottom: var(--space-sm);
-  }
+  .donate__campaign{background:rgba(250,244,234,.06);border:1px solid rgba(250,244,234,.12);border-radius:var(--radius-md);padding:1.6rem;}
+  .donate__campaign-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem;}
+  .donate__campaign-label{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:#f0b48a;}
+  .donate__campaign-pct{font-family:var(--font-display);font-size:1.3rem;color:#f0b48a;}
+  .donate__campaign-title{font-size:1.2rem;color:var(--on-dark);margin-bottom:1rem;}
+  .donate__bar{height:13px;background:rgba(250,244,234,.15);border-radius:var(--radius-full);overflow:hidden;margin-bottom:.8rem;}
+  .donate__fill{height:100%;width:0;background:linear-gradient(90deg,#f0b48a,#c96a3c);border-radius:var(--radius-full);transition:width 1.6s var(--ease-out);}
+  .donate__campaign-nums{display:flex;align-items:baseline;gap:.6rem;}
+  .donate__raised{font-family:var(--font-display);font-size:1.6rem;color:#f0b48a;}
+  .donate__goal{font-size:.85rem;color:rgba(250,244,234,.7);}
 
-  .donate__card-text {
-    color: var(--text-2);
-    margin-bottom: var(--space-lg);
-    font-size: 0.95rem;
-  }
+  .donate__panel-title{font-size:1.5rem;color:var(--on-dark);margin-bottom:.3rem;}
+  .donate__panel-sub{color:rgba(250,244,234,.7);font-size:.9rem;margin-bottom:1.5rem;}
 
-  .donate__amounts {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-sm);
-    margin-bottom: var(--space-md);
+  .donate__tiers{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.1rem;}
+  .donate__tier{
+    padding:1rem;border-radius:var(--radius-md);
+    background:rgba(250,244,234,.07);border:1.5px solid rgba(250,244,234,.14);
+    cursor:pointer;transition:all .3s var(--ease-out);display:flex;flex-direction:column;gap:.15rem;
   }
+  .donate__tier:hover{border-color:#f0b48a;}
+  .donate__tier:has(input:checked){border-color:#f0b48a;background:rgba(240,180,138,.14);}
+  .donate__tier-amt{font-family:var(--font-display);font-size:1.5rem;color:#f0b48a;}
+  .donate__tier-impact{font-size:.78rem;color:rgba(250,244,234,.7);}
 
-  .donate__amount {
-    padding: 0.875rem;
-    border: 2px solid var(--surface-4);
-    background: transparent;
-    color: var(--text-1);
-    border-radius: var(--radius-md);
-    font-size: 1.1rem;
-    font-weight: 600;
-    transition: all var(--duration-fast);
-  }
+  .donate__custom-row{display:flex;align-items:center;gap:.3rem;background:rgba(250,244,234,.07);border:1.5px solid rgba(250,244,234,.14);border-radius:var(--radius-md);padding:0 .8rem;margin-bottom:1.1rem;}
+  .donate__custom-prefix{font-weight:800;color:#f0b48a;}
+  .donate__custom{width:100%;background:transparent;border:none;padding:.9rem;color:var(--on-dark);font-size:1.05rem;font-family:var(--font-body);}
+  .donate__custom:focus{outline:none;}
 
-  .donate__amount:hover,
-  .donate__amount.active {
-    border-color: var(--orange);
-    background: var(--orange);
-    color: #fff;
-  }
+  .donate__freq{display:flex;gap:.5rem;margin-bottom:1.1rem;}
+  .donate__freq-btn{flex:1;padding:.7rem;border-radius:var(--radius-md);border:1.5px solid rgba(250,244,234,.18);color:rgba(250,244,234,.8);font-weight:700;font-size:.9rem;transition:all .25s var(--ease-out);}
+  .donate__freq-btn.is-active{background:var(--terra);color:#fff;border-color:transparent;}
 
-  .donate__custom {
-    width: 100%;
-    padding: 0.875rem;
-    background: var(--surface-3);
-    border: 2px solid var(--surface-4);
-    border-radius: var(--radius-md);
-    color: var(--text-1);
-    font-size: 1rem;
-    margin-bottom: var(--space-md);
-    transition: border-color var(--duration-fast);
-    font-family: var(--font-body);
-  }
+  .donate__cta{width:100%;justify-content:center;font-size:1.02rem;padding:1rem;}
+  .donate__trust{display:flex;align-items:center;justify-content:center;gap:.5rem;color:rgba(250,244,234,.7);font-size:.82rem;margin-top:1.2rem;}
+  .donate__trust svg{width:16px;height:16px;color:#f0b48a;}
 
-  .donate__custom:focus {
-    outline: none;
-    border-color: var(--orange);
-  }
-
-  .donate__btn {
-    width: 100%;
-  }
-
-  .donate__progress {
-    text-align: center;
-    padding: var(--space-xl);
-  }
-
-  .donate__progress-title {
-    font-size: 1.3rem;
-    margin-bottom: var(--space-lg);
-    color: var(--text-1);
-  }
-
-  .donate__bar {
-    width: 100%;
-    height: 16px;
-    background: var(--surface-3);
-    border-radius: var(--radius-full);
-    overflow: hidden;
-    margin-bottom: var(--space-md);
-  }
-
-  .donate__fill {
-    height: 100%;
-    width: 0;
-    background: var(--gradient-brand);
-    border-radius: var(--radius-full);
-    transition: width 1.5s var(--ease-out);
-    position: relative;
-  }
-
-  .donate__fill::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-    animation: shimmer 2s infinite;
-  }
-
-  @keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
-  }
-
-  .donate__progress-text {
-    font-size: 0.95rem;
-    color: var(--text-2);
-  }
-
-  .donate__raised, .donate__goal {
-    font-weight: 700;
-    color: var(--orange);
-  }
+  @media(max-width:900px){.donate-card__grid{grid-template-columns:1fr;}}
 </style>
 
 <script>
-  document.querySelectorAll('.donate__amount').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const parent = btn.closest('.donate__card')!;
-      parent.querySelectorAll('.donate__amount').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    });
-  });
+  const freqBtns=document.querySelectorAll('.donate__freq-btn');
+  freqBtns.forEach(b=>b.addEventListener('click',()=>{freqBtns.forEach(x=>x.classList.remove('is-active'));b.classList.add('is-active');}));
 
-  // Progress bar animation
-  const fill = document.querySelector('.donate__fill') as HTMLElement;
-  if (fill) {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          fill.style.width = fill.dataset.progress + '%';
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.5 });
+  const fill=document.querySelector('.donate__fill');
+  if(fill){
+    const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){fill.style.width=fill.dataset.progress+'%';obs.unobserve(en.target);}});},{threshold:.4});
     obs.observe(fill);
   }
 </script>

@@ -1,40 +1,27 @@
 ---
-const faqs = [
-  {
-    q: "How can I get involved with EJ Hope Foundation?",
-    a: "There are many ways to get involved! You can volunteer at our events, become a mentor, donate to support our programs, or help spread awareness about mental health in your community."
-  },
-  {
-    q: "Are your services confidential?",
-    a: "Yes, all our support services maintain strict confidentiality. We understand the sensitive nature of mental health and ensure that your privacy is protected at all times."
-  },
-  {
-    q: "Do you offer professional counseling?",
-    a: "We provide peer support groups and can connect you with licensed mental health professionals in our network. Our programs complement professional treatment and focus on community support."
-  },
-  {
-    q: "How are donations used?",
-    a: "Donations directly support our programs including community workshops, support groups, educational materials, and outreach events. We maintain full transparency in our finances."
-  },
-  {
-    q: "Can I share my story with EJ Hope Foundation?",
-    a: "Absolutely! We welcome and celebrate stories of recovery and resilience. Your story can inspire others and help break the stigma surrounding mental health."
-  }
+const faqs=[
+  { q:'How can I get involved?', a:'You can volunteer at our events, become a mentor, donate to support programs, or help spread awareness in your community. Reach out through the contact form and we\'ll match you with the right opportunity.' },
+  { q:'Are your services confidential?', a:'Yes — always. We understand how sensitive mental health is. Everything shared with us stays private and protected, full stop.' },
+  { q:'Do you offer professional counseling?', a:'We provide peer support groups and connect people with licensed professionals in our network. Our programs complement professional treatment with community care.' },
+  { q:'How are donations used?', a:'Donations go directly into our programs: community workshops, support groups, home visits, helpline operations, and educational materials. We publish regular impact updates.' },
+  { q:'Can I share my story?', a:'Absolutely — and we\'d be honored. Sharing your story helps others feel less alone and breaks the stigma. Contact us and we\'ll guide you through it.' }
 ];
 ---
-<section class="section" aria-labelledby="faq-heading">
-  <div class="container container--narrow">
-    <h2 id="faq-heading" class="section__title reveal">Frequently Asked Questions</h2>
+<section class="section faq">
+  <div class="container container__narrow">
+    <div class="section-head section-head--center">
+      <span class="section-eyebrow reveal">Good to know</span>
+      <h2 class="section-title reveal">Frequently asked <em>questions</em></h2>
+    </div>
+
     <div class="faq__list">
-      {faqs.map((faq, i) => (
-        <div class={`faq__item reveal reveal-delay-${Math.min(i + 1, 4)}`}>
-          <button class="faq__question" aria-expanded="false">
-            <span>{faq.q}</span>
-            <svg class="faq__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      {faqs.map((f,i)=>(
+        <div class={`faq__item reveal reveal-d${Math.min(i+1,4)}`}>
+          <button class="faq__q" aria-expanded="false">
+            <span>{f.q}</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
-          <div class="faq__answer">
-            <p>{faq.a}</p>
-          </div>
+          <div class="faq__a"><p>{f.a}</p></div>
         </div>
       ))}
     </div>
@@ -42,83 +29,25 @@ const faqs = [
 </section>
 
 <style>
-  .faq__list {
-    margin-top: var(--space-xl);
-  }
-
-  .faq__item {
-    border: 1px solid var(--surface-3);
-    border-radius: var(--radius-md);
-    margin-bottom: var(--space-md);
-    overflow: hidden;
-    background: var(--surface-2);
-    transition: border-color var(--duration-fast);
-  }
-
-  .faq__item.active {
-    border-color: rgba(255,127,0,0.3);
-  }
-
-  .faq__question {
-    width: 100%;
-    padding: var(--space-lg);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--text-1);
-    text-align: left;
-    transition: color var(--duration-fast);
-    font-family: var(--font-body);
-  }
-
-  .faq__question:hover {
-    color: var(--orange);
-  }
-
-  .faq__chevron {
-    width: 20px;
-    height: 20px;
-    color: var(--orange);
-    transition: transform var(--duration-normal) var(--ease-out);
-    flex-shrink: 0;
-  }
-
-  .faq__item.active .faq__chevron {
-    transform: rotate(180deg);
-  }
-
-  .faq__answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height var(--duration-normal) var(--ease-out),
-                padding var(--duration-normal) var(--ease-out);
-  }
-
-  .faq__item.active .faq__answer {
-    max-height: 300px;
-  }
-
-  .faq__answer p {
-    padding: 0 var(--space-lg) var(--space-lg);
-    color: var(--text-2);
-    line-height: 1.8;
-    font-size: 0.95rem;
-  }
+  .container__narrow{max-width:760px;}
+  .faq__list{margin-top:2rem;}
+  .faq__item{margin-bottom:1rem;overflow:hidden;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-md);transition:border-color .3s;}
+  .faq__q{width:100%;padding:1.4rem 1.5rem;display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--ink);font-size:1.02rem;text-align:left;font-family:var(--font-body);}
+  .faq__q svg{width:20px;height:20px;color:var(--terra);transition:transform .4s var(--ease-out);flex-shrink:0;}
+  .faq__item.is-active{border-color:var(--terra);}
+  .faq__item.is-active .faq__q svg{transform:rotate(180deg);}
+  .faq__a{max-height:0;overflow:hidden;transition:max-height .45s var(--ease-out);}
+  .faq__item.is-active .faq__a{max-height:280px;}
+  .faq__a p{padding:0 1.5rem 1.5rem;color:var(--ink-2);line-height:1.8;}
 </style>
 
 <script>
-  document.querySelectorAll('.faq__question').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.faq__item')!;
-      const wasActive = item.classList.contains('active');
-      document.querySelectorAll('.faq__item').forEach(i => i.classList.remove('active'));
-      document.querySelectorAll('.faq__question').forEach(q => q.setAttribute('aria-expanded', 'false'));
-      if (!wasActive) {
-        item.classList.add('active');
-        btn.setAttribute('aria-expanded', 'true');
-      }
+  document.querySelectorAll('.faq__q').forEach(q=>{
+    q.addEventListener('click',()=>{
+      const item=q.closest('.faq__item');
+      const open=item.classList.contains('is-active');
+      document.querySelectorAll('.faq__item').forEach(x=>{x.classList.remove('is-active');x.querySelector('.faq__q')?.setAttribute('aria-expanded','false');});
+      if(!open){item.classList.add('is-active');q.setAttribute('aria-expanded','true');}
     });
   });
 </script>

@@ -1,111 +1,91 @@
 ---
-const features = [
-  {
-    icon: "heart",
-    title: "Compassionate Care",
-    text: "Providing empathetic, judgment-free support to those navigating mental health challenges."
-  },
-  {
-    icon: "lightbulb",
-    title: "Education & Awareness",
-    text: "Breaking stigma through knowledge, understanding, and open community dialogue."
-  },
-  {
-    icon: "hands",
-    title: "Community Support",
-    text: "Building strong networks of care, solidarity, and shared resilience."
-  }
-];
 ---
-<section id="about" class="section" aria-labelledby="about-heading">
-  <div class="container">
-    <div class="section__header">
-      <h2 id="about-heading" class="section__title reveal">Our Story</h2>
-      <p class="about__text reveal reveal-delay-1">
-        EJ Hope Foundation was created to honor the memory of <strong>Elsie Jelagat</strong>. Our mission is to raise awareness, provide support, and break the stigma surrounding mental health in communities everywhere.
-      </p>
+<section id="about" class="section">
+  <div class="container about__grid">
+    <!-- Art panel -->
+    <div class="about__media reveal">
+      <div class="about__media-inner">
+        <div class="ring ring--1" aria-hidden="true"></div>
+        <div class="ring ring--2" aria-hidden="true"></div>
+        <div class="orb orbs--1" aria-hidden="true"></div>
+        <div class="orb orbs--2" aria-hidden="true"></div>
+        <p class="about__quote">"We refuse to let anyone face their darkest moments alone."</p>
+      </div>
     </div>
-    <div class="about__features">
-      {features.map((f, i) => (
-        <div class={`about__feature card reveal reveal-delay-${i + 1}`}>
-          <div class="about__feature-icon">
-            {f.icon === "heart" && (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            )}
-            {f.icon === "lightbulb" && (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg>
-            )}
-            {f.icon === "hands" && (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 11V7a5 5 0 0 1 10 0v4M12 22v-6M4 15a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-3H4v3z"/></svg>
-            )}
+
+    <!-- Story -->
+    <div class="about__text reveal reveal-d2">
+      <span class="section-eyebrow">Our Story</span>
+      <h2 class="section-title">Born from love, <br>carried by <em>community</em></h2>
+      <p class="about__p">
+        EJ Hope Foundation was created in memory of <strong class="accent">Elsie Jelagat</strong> — a bright soul whose life reminded everyone who knew her just how deeply mental health touches us all.
+      </p>
+      <blockquote class="about__block">"We walk beside people through life's hardest moments."</blockquote>
+      <p class="about__p">
+        What began as a promise to honor her has grown into a movement — one where no one faces their darkest moments alone, and where support is always free and never judged.
+      </p>
+
+      <div class="paths">
+        <a class="path" href="#programs">
+          <div>
+            <h4>I need support</h4>
+            <span class="path__hint">For yourself or someone you love</span>
           </div>
-          <h3 class="about__feature-title">{f.title}</h3>
-          <p class="about__feature-text">{f.text}</p>
-        </div>
-      ))}
+          <span class="path__arw">→</span>
+        </a>
+        <a class="path" href="#get-involved">
+          <div>
+            <h4>I want to help</h4>
+            <span class="path__hint">Volunteer, support, give back</span>
+          </div>
+          <span class="path__arw">→</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  .about__text {
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
-    color: var(--text-2);
-    max-width: 700px;
-    margin-inline: auto;
-    line-height: 1.8;
+  .about__grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(2.5rem,5vw,4rem);align-items:center;}
+
+  .about__media-inner{
+    position:relative;border-radius:var(--radius-xl);overflow:hidden;
+    height:clamp(360px,46vw,480px);
+    background:linear-gradient(160deg,var(--terracotta),var(--clay));
+    box-shadow:var(--card-shadow-lg);
+  }
+  .about__quote{
+    position:absolute;left:2rem;right:2rem;bottom:2rem;
+    color:#fff;font-family:var(--font-display);font-style:italic;
+    font-size:clamp(1.2rem,2.4vw,1.5rem);line-height:1.3;z-index:2;
+  }
+  .ring{position:absolute;border:2px solid rgba(255,255,255,.28);border-radius:50%;}
+  .ring--1{width:120px;height:120px;top:2.5rem;left:2.5rem;}
+  .ring--1::after{content:'';position:absolute;inset:18px;border:2px solid rgba(255,255,255,.22);border-radius:50%;}
+  .ring--2{width:70px;height:70px;top:5rem;left:5.5rem;border:2px solid rgba(255,255,255,.35);border-radius:50%;}
+  .orbs--1{position:absolute;bottom:-60px;right:-40px;width:300px;height:300px;background:rgba(61,46,36,.4);border-radius:50%;}
+  .orbs--2{position:absolute;top:3rem;right:2.5rem;width:52px;height:52px;background:rgba(240,180,138,.5);border-radius:50%;}
+
+  .about__p{color:var(--ink-2);font-size:1.05rem;line-height:1.85;margin-top:1.1rem;max-width:540px;}
+  .about__block{
+    border-left:4px solid var(--terra);padding-left:1.4rem;
+    font-family:var(--font-display);font-style:italic;
+    font-size:1.5rem;line-height:1.3;color:var(--brown);
+    margin:1.8rem 0;
   }
 
-  .about__text strong {
-    color: var(--orange);
+  .paths{display:flex;flex-direction:column;gap:.9rem;margin-top:1.6rem;}
+  .path{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1.35rem 1.55rem;
+    background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius-md);
+    transition:transform .25s var(--ease-out),border-color .25s,box-shadow .25s;
   }
+  .path:hover{border-color:var(--terra);transform:translateX(8px);box-shadow:var(--card-shadow);}
+  .path h4{font-family:var(--font-display);font-size:1.4rem;font-weight:400;color:var(--ink);}
+  .path__hint{color:var(--muted);font-size:.88rem;}
+  .path__arw{color:var(--terra);font-size:1.6rem;font-weight:400;}
 
-  .about__features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--space-lg);
-    margin-top: var(--space-xl);
-  }
-
-  .about__feature {
-    text-align: center;
-    padding: var(--space-xl) var(--space-lg);
-  }
-
-  .about__feature-icon {
-    width: 64px;
-    height: 64px;
-    margin: 0 auto var(--space-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255,127,0,0.1);
-    border-radius: var(--radius-lg);
-    color: var(--orange);
-    transition: all var(--duration-normal) var(--ease-out);
-  }
-
-  .about__feature-icon svg {
-    width: 32px;
-    height: 32px;
-  }
-
-  .about__feature:hover .about__feature-icon {
-    background: var(--gradient-brand);
-    color: #fff;
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-glow);
-  }
-
-  .about__feature-title {
-    font-size: 1.25rem;
-    margin-bottom: var(--space-sm);
-    color: var(--orange);
-  }
-
-  .about__feature-text {
-    color: var(--text-2);
-    font-size: 0.95rem;
-    line-height: 1.7;
-  }
+  @media(max-width:900px){.about__grid{grid-template-columns:1fr;gap:2.5rem;}}
 </style>

@@ -1,30 +1,34 @@
 ---
-const events = [
-  { day: "15", month: "MAR", title: "Mental Health Awareness Walk", location: "Central Park, 9:00 AM", description: "Join us for our annual community walk promoting mental health awareness and solidarity.", cta: "Register Now" },
-  { day: "22", month: "MAR", title: "Youth Mental Health Workshop", location: "Community Center, 2:00 PM", description: "Interactive workshop for teens and young adults on coping strategies and resilience.", cta: "Register Now" },
-  { day: "10", month: "APR", title: "Fundraising Gala", location: "Grand Hotel, 6:00 PM", description: "An evening of inspiration, connection, and fundraising for our programs.", cta: "Get Tickets" }
+const events=[
+  { day:'15', month:'Mar', title:'Mental Health Awareness Walk', location:'Central Park · 9:00 AM', desc:'Our annual walk uniting the community around mental health.' },
+  { day:'22', month:'Mar', title:'Youth Mental Health Workshop', location:'Community Center · 2:00 PM', desc:'Hands-on coping skills for teens and young adults.' },
+  { day:'10', month:'Apr', title:'Fundraising Gala', location:'Grand Hotel · 6:00 PM', desc:'An evening of connection and hope to fund our programs.' }
 ];
 ---
-<section class="section" aria-labelledby="events-heading">
+<section id="events" class="section">
   <div class="container">
-    <h2 id="events-heading" class="section__title reveal">Upcoming Events</h2>
+    <div class="section-head section-head--center">
+      <span class="section-eyebrow reveal">Coming up</span>
+      <h2 class="section-title reveal">Join us at an <em>event</em></h2>
+      <p class="section-sub reveal">Connecting in person builds the community that heals. Come as you are.</p>
+    </div>
+
     <div class="events__grid">
-      {events.map((e, i) => (
-        <article class={`events__card reveal reveal-delay-${i + 1}`}>
+      {events.map((e,i)=>(
+        <article class={`events__card reveal reveal-d${(i%3)+1}`}>
           <div class="events__date">
             <span class="events__day">{e.day}</span>
             <span class="events__month">{e.month}</span>
           </div>
-          <div class="events__details">
+          <div class="events__body">
             <h3 class="events__title">{e.title}</h3>
-            <p class="events__location">
+            <p class="events__loc">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
               {e.location}
             </p>
-            <p class="events__desc">{e.description}</p>
+            <p class="events__desc">{e.desc}</p>
             <a href="#contact" class="events__link">
-              {e.cta}
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Register <span aria-hidden="true">→</span>
             </a>
           </div>
         </article>
@@ -34,102 +38,18 @@ const events = [
 </section>
 
 <style>
-  .events__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: var(--space-lg);
-    margin-top: var(--space-xl);
-  }
+  .events__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;}
+  .events__card{display:flex;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius-lg);background:var(--card);box-shadow:var(--card-shadow);transition:transform .3s var(--ease-out),box-shadow .3s;padding:0;}
+  .events__card:hover{transform:translateY(-6px);box-shadow:var(--card-shadow-lg);}
+  .events__date{min-width:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--grad-brand);color:#fff;text-align:center;padding:1.2rem .6rem;}
+  .events__day{font-family:var(--font-display);font-size:2.4rem;line-height:1;}
+  .events__month{font-size:.76rem;text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem;font-weight:700;}
+  .events__body{padding:1.6rem;flex:1;}
+  .events__title{font-size:1.25rem;line-height:1.2;margin-bottom:.5rem;color:var(--ink);}
+  .events__loc{display:flex;align-items:center;gap:.4rem;color:var(--terra);font-size:.82rem;margin-bottom:.6rem;font-weight:600;}
+  .events__loc svg{width:14px;height:14px;}
+  .events__desc{color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:1.1rem;}
+  .events__link{display:inline-flex;align-items:center;gap:.4rem;color:var(--terra);font-weight:800;font-size:.9rem;}
 
-  .events__card {
-    display: flex;
-    background: var(--surface-2);
-    border: 1px solid var(--surface-3);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    transition: all var(--duration-normal) var(--ease-out);
-  }
-
-  .events__card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255,127,0,0.3);
-    box-shadow: var(--shadow-glow);
-  }
-
-  .events__date {
-    background: var(--gradient-brand);
-    padding: var(--space-lg);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-width: 90px;
-    color: #fff;
-  }
-
-  .events__day {
-    font-family: var(--font-heading);
-    font-size: 2.5rem;
-    font-weight: 800;
-    line-height: 1;
-  }
-
-  .events__month {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    opacity: 0.9;
-  }
-
-  .events__details {
-    padding: var(--space-lg);
-    flex: 1;
-  }
-
-  .events__title {
-    font-size: 1.15rem;
-    margin-bottom: var(--space-xs);
-    color: var(--text-1);
-  }
-
-  .events__location {
-    display: flex;
-    align-items: center;
-    gap: var(--space-xs);
-    font-size: 0.85rem;
-    color: var(--orange);
-    margin-bottom: var(--space-sm);
-  }
-
-  .events__location svg {
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
-  }
-
-  .events__desc {
-    font-size: 0.9rem;
-    color: var(--text-2);
-    line-height: 1.6;
-    margin-bottom: var(--space-md);
-  }
-
-  .events__link {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
-    color: var(--orange);
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: gap var(--duration-normal) var(--ease-out);
-  }
-
-  .events__link svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  .events__link:hover {
-    gap: var(--space-sm);
-  }
+  @media(max-width:900px){.events__grid{grid-template-columns:1fr;}}
 </style>
