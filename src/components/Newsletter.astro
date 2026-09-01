@@ -3,9 +3,9 @@
 <section class="newsletter">
   <div class="container newsletter__wrap">
     <div class="newsletter__text reveal">
-      <div class="newsletter__kicker">The monthly letter</div>
-      <h2 class="newsletter__title">Stay close to the story</h2>
-      <p class="newsletter__sub">Monthly impact stories, resources, and updates. No spam — ever.</p>
+      <div class="newsletter__kicker">The founding letter</div>
+      <h2 class="newsletter__title">Follow our first year</h2>
+      <p class="newsletter__sub">We're brand new — follow along month by month as the foundation takes shape. One letter in your inbox, nothing else.</p>
     </div>
     <form class="newsletter__form reveal reveal-d2" id="newsletter-form">
       <div class="newsletter__field">
@@ -41,6 +41,6 @@
   document.getElementById('newsletter-form')?.addEventListener('submit',e=>{
     e.preventDefault();
     const inp=(e.target).querySelector('input');
-    if(inp?.value){alert('You\'re subscribed! Look out for our next impact update.');inp.value='';}
+    if(inp?.value){alert('You\'re on the founding list! We\'ll be in touch with our first letter.');inp.value='';}
   });
 </script>

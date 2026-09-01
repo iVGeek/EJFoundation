@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: ej-hope-foundation
+    runtime: static
+    repo: https://github.com/iVGeek/EJFoundation
+    buildCommand: npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: PUBLIC_PAYSTACK_KEY
+        sync: false
+      - key: PUBLIC_PAYSTACK_DEFAULT_CURRENCY
+        value: KES

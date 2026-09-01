@@ -10,6 +10,11 @@ node_modules/
 # logs
 npm-debug.log*
 
+# secrets
+.env
+.env.*
+!.env.example
+
 # system
 .DS_Store
 Thumbs.db

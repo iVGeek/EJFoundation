@@ -1,22 +1,22 @@
 ---
 const ways=[
-  { title:'Volunteer', desc:'Lend your time and heart to events, home visits, and workshops.', cta:'Volunteer with us' },
-  { title:'Become a Partner', desc:'Work with us to reach more people and amplify impact.', cta:'Partner with us' },
-  { title:'Spread Awareness', desc:'Share our resources and help break the stigma in your circle.', cta:'Share the mission' }
+  { title:'Be a Founding Volunteer', desc:'Join the handful of people shaping this foundation from day one — events, home visits, and workshops.', cta:'Volunteer with us' },
+  { title:'Become a Founding Partner', desc:'Stand with us before anyone has heard of us. Your support carries our first year and beyond.', cta:'Partner with us' },
+  { title:'Spread Awareness', desc:'Tell your circle who we are. A new foundation grows one conversation at a time.', cta:'Share the mission' }
 ];
 
 const tiers=[
-  { name:'Bronze', amount:'$1,000+', color:'#a9703f', feats:['Logo on our website','Event recognition','Quarterly impact updates'] },
-  { name:'Silver', amount:'$5,000+', color:'#8b8b8b', featured:true, feats:['All Bronze benefits','Social media shoutouts','Program naming opportunity'] },
-  { name:'Gold', amount:'$10,000+', color:'#c99a2e', feats:['All Silver benefits','Board meeting invitations','Custom partnership package'] }
+  { name:'Founder', amount:'$1,000+', color:'#a9703f', feats:['Name on our founding wall','First-year impact updates','Early access to everything'] },
+  { name:'Patron', amount:'$5,000+', color:'#8b8b8b', featured:true, feats:['Everything in Founder','Named in launch materials','Invitation to our launch event'] },
+  { name:'Champion', amount:'$10,000+', color:'#c99a2e', feats:['Everything in Patron','Co-naming a year-one program','A seat at our first table'] }
 ];
 ---
 <section id="get-involved" class="section section--alt">
   <div class="container">
     <div class="section-head section-head--center">
       <span class="section-eyebrow reveal">Get Involved</span>
-      <h2 class="section-title reveal">Many ways to <em>make a difference</em></h2>
-      <p class="section-sub reveal">Whether you have an hour, a skill, or a platform — there's a place for you here.</p>
+      <h2 class="section-title reveal">Help us <em>get started</em></h2>
+      <p class="section-sub reveal">We're new, we're small, and everything is still being built. There has never been an easier time to make your mark.</p>
     </div>
 
     <div class="involved__ways">
@@ -32,15 +32,15 @@ const tiers=[
 
     <div class="involved__sponsor">
       <div class="section-head section-head--center" style="margin-top:4rem;">
-        <span class="section-eyebrow reveal">Sponsorship</span>
-        <h2 class="section-title reveal">Sponsor & <em>transform lives</em></h2>
-        <p class="section-sub reveal">Visibility for your brand. Hope for our community. A partnership with real purpose.</p>
+        <span class="section-eyebrow reveal">Founding sponsorship</span>
+        <h2 class="section-title reveal">Be among our <em>first partners</em></h2>
+        <p class="section-sub reveal">We're brand new. Your brand can be part of the story from the very beginning — visibility now, real impact forever.</p>
       </div>
 
       <div class="involved__tiers">
         {tiers.map((t,i)=>(
           <div class={`involved__tier reveal reveal-d${(i%3)+1} ${t.featured?'is-featured':''}`}>
-            {t.featured && <span class="involved__pop">Most popular</span>}
+            {t.featured && <span class="involved__pop">Most chosen</span>}
             <div class="involved__medal" style={`color:${t.color}`}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
             </div>
@@ -51,7 +51,7 @@ const tiers=[
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>{f}</li>
               ))}
             </ul>
-            <a href="#contact" class={`btn ${t.featured?'btn--primary':'btn--outline'} involved__tier-btn`}>Select {t.name}</a>
+            <a href="#donate" class={`btn ${t.featured?'btn--primary':'btn--outline'} involved__tier-btn`}>Give {t.name}</a>
           </div>
         ))}
       </div>

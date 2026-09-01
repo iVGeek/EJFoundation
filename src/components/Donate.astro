@@ -1,10 +1,9 @@
 ---
-const tiers=[
-  { amount:25, impact:'Funds a workshop' },
-  { amount:50, impact:'Materials for a visit' },
-  { amount:100, impact:'Keeps helpline running' },
-  { amount:250, impact:'A week of talks' }
-];
+const PRICES = { USD:[25,50,100,250], KES:[500,1000,2500,5000], NGN:[1000,2500,5000,10000], GHS:[50,100,250,500], ZAR:[100,250,500,1000] };
+const SYMBOLS = { USD:'$', KES:'KSh', NGN:'₦', GHS:'GH₵', ZAR:'R' };
+const impacts = ['Buys helpline flyers','Funds a peer-support session','Keeps helpline online for a day','Covers our first workshop'];
+const defaultCurrency = import.meta.env.PUBLIC_PAYSTACK_DEFAULT_CURRENCY || 'KES';
+const money=(c,n)=>{const s=SYMBOLS[c]||c;return (c==='KES'?`${s} ${n.toLocaleString()}`:`${s}${n.toLocaleString()}`);};
 ---
 <section id="donate" class="section">
   <div class="container">
@@ -12,58 +11,59 @@ const tiers=[
       <div class="donate-card__grid">
         <!-- Copy -->
         <div class="donate__copy reveal">
-          <div class="donate__kicker">Support the mission</div>
-          <h2 class="donate__title">Your kindness <em>becomes hope</em></h2>
-          <p class="donate__text">Every contribution — big or small — goes directly into programs that lift people out of isolation and into support. When you give, someone finds the courage to reach out.</p>
+          <div class="donate__kicker">Founding campaign</div>
+          <h2 class="donate__title">Help us launch <em>year one</em></h2>
+          <p class="donate__text">We're brand new — every dollar is a founding gift that goes straight into building our first programs and getting the helpline running. When you give, a brand-new foundation takes its next step.</p>
 
           <div class="donate__campaign">
             <div class="donate__campaign-top">
-              <span class="donate__campaign-label">Current campaign</span>
-              <span class="donate__campaign-pct">65%</span>
+              <span class="donate__campaign-label">Year-one goal</span>
+              <span class="donate__campaign-pct">33%</span>
             </div>
-            <div class="donate__campaign-title">New Community Center</div>
-            <div class="donate__bar"><div class="donate__fill" data-progress="65"></div></div>
+            <div class="donate__campaign-title">Launch the 24/7 Helpline</div>
+            <div class="donate__bar"><div class="donate__fill" data-progress="33"></div></div>
             <div class="donate__campaign-nums">
-              <span class="donate__raised">$65,000</span>
-              <span class="donate__goal">of $100,000 goal</span>
+              <span class="donate__raised">KSh 82,500</span>
+              <span class="donate__goal">of KSh 250,000 goal</span>
             </div>
+            <p class="donate__campaign-note">Goal shown in the foundation's currency (KES). Donations are settled securely via Paystack.</p>
           </div>
         </div>
 
         <!-- Form -->
         <div class="donate__panel reveal reveal-d2">
-          <div class="donate__panel-title">Make a difference today</div>
-          <div class="donate__panel-sub">One-time or monthly — your choice.</div>
+          <div class="donate__panel-title">Make a founding gift</div>
+          <div class="donate__panel-sub">One-time or monthly — every gift counts at the start.</div>
+
+          <div class="donate__field">
+            <label for="donate-email" class="donate__label">Email for your receipt</label>
+            <input type="email" id="donate-email" placeholder="you@example.com" required class="donate__input">
+          </div>
 
           <div class="donate__tiers">
-            {tiers.map(t=>(
+            {impacts.map((im,i)=>(
               <label class="donate__tier">
-                <input type="radio" name="amount" value={t.amount} class="sr-only">
-                <span class="donate__tier-amt">${t.amount}</span>
-                <span class="donate__tier-impact">{t.impact}</span>
+                <input type="radio" name="amount" value={PRICES[defaultCurrency][i]} data-idx={i} class="sr-only" checked={i===0}>
+                <span class="donate__tier-amt" data-amt={i}>{money(defaultCurrency,PRICES[defaultCurrency][i])}</span>
+                <span class="donate__tier-impact">{im}</span>
               </label>
             ))}
           </div>
 
           <div class="donate__custom-row">
-            <span class="donate__custom-prefix">$</span>
+            <span class="donate__custom-prefix">{SYMBOLS[defaultCurrency]||defaultCurrency}</span>
             <input type="number" class="donate__custom" id="custom-amount" placeholder="Custom amount" min="1">
           </div>
 
           <div class="donate__freq">
-            <button class="donate__freq-btn is-active" data-freq="once">Give once</button>
-            <button class="donate__freq-btn" data-freq="monthly">Monthly</button>
+            <button class="donate__freq-btn is-active" data-freq="once" type="button">Give once</button>
+            <button class="donate__freq-btn" data-freq="monthly" type="button">Monthly</button>
           </div>
 
-          <button class="btn btn--light donate__cta" id="donate-cta">
-            Donate Now
+          <button class="btn btn--light donate__cta" id="donate-cta" type="button">
+            Give via Paystack
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
           </button>
-
-          <div class="donate__trust">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-            100% goes to programs · Secure & confidential
-          </div>
         </div>
       </div>
     </div>
@@ -99,16 +99,24 @@ const tiers=[
   .donate__campaign-label{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:#f0b48a;}
   .donate__campaign-pct{font-family:var(--font-display);font-size:1.3rem;color:#f0b48a;}
   .donate__campaign-title{font-size:1.2rem;color:var(--on-dark);margin-bottom:1rem;}
+  .donate__campaign-note{font-size:.76rem;color:rgba(250,244,234,.6);margin-top:.8rem;line-height:1.6;}
+  .donate__campaign-note #campaign-cur{color:#f0b48a;font-weight:700;}
   .donate__bar{height:13px;background:rgba(250,244,234,.15);border-radius:var(--radius-full);overflow:hidden;margin-bottom:.8rem;}
   .donate__fill{height:100%;width:0;background:linear-gradient(90deg,#f0b48a,#c96a3c);border-radius:var(--radius-full);transition:width 1.6s var(--ease-out);position:relative;}
   .donate__fill::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);animation:donate-shimmer 2.4s infinite;}
   @keyframes donate-shimmer{0%{transform:translateX(-100%);}100%{transform:translateX(100%);}}
-  .donate__campaign-nums{display:flex;align-items:baseline;gap:.6rem;}
+  .donate__campaign-nums{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;}
   .donate__raised{font-family:var(--font-display);font-size:1.6rem;color:#f0b48a;}
   .donate__goal{font-size:.85rem;color:rgba(250,244,234,.7);}
 
   .donate__panel-title{font-size:1.5rem;color:var(--on-dark);margin-bottom:.3rem;}
-  .donate__panel-sub{color:rgba(250,244,234,.7);font-size:.9rem;margin-bottom:1.5rem;}
+  .donate__panel-sub{color:rgba(250,244,234,.7);font-size:.9rem;margin-bottom:1.2rem;}
+
+  .donate__field{margin-bottom:1.1rem;}
+  .donate__label{display:block;font-size:.76rem;font-weight:700;letter-spacing:.04em;color:rgba(250,244,234,.75);margin-bottom:.4rem;}
+  .donate__input{width:100%;background:rgba(250,244,234,.07);border:1.5px solid rgba(250,244,234,.14);border-radius:var(--radius-md);padding:.9rem 1rem;color:var(--on-dark);font-size:1rem;font-family:var(--font-body);transition:border-color .25s;}
+  .donate__input:focus{outline:none;border-color:#f0b48a;}
+  .donate__input::placeholder{color:rgba(250,244,234,.45);}
 
   .donate__tiers{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1.1rem;}
   .donate__tier{
@@ -127,23 +135,103 @@ const tiers=[
   .donate__custom:focus{outline:none;}
 
   .donate__freq{display:flex;gap:.5rem;margin-bottom:1.1rem;}
-  .donate__freq-btn{flex:1;padding:.7rem;border-radius:var(--radius-md);border:1.5px solid rgba(250,244,234,.18);color:rgba(250,244,234,.8);font-weight:700;font-size:.9rem;transition:all .25s var(--ease-out);}
+  .donate__freq-btn{flex:1;padding:.7rem;border-radius:var(--radius-md);border:1.5px solid rgba(250,244,234,.18);color:rgba(250,244,234,.8);font-weight:700;font-size:.9rem;transition:all .25s var(--ease-out);background:transparent;}
   .donate__freq-btn.is-active{background:var(--terra);color:#fff;border-color:transparent;}
 
   .donate__cta{width:100%;justify-content:center;font-size:1.02rem;padding:1rem;}
-  .donate__trust{display:flex;align-items:center;justify-content:center;gap:.5rem;color:rgba(250,244,234,.7);font-size:.82rem;margin-top:1.2rem;}
-  .donate__trust svg{width:16px;height:16px;color:#f0b48a;}
 
   @media(max-width:900px){.donate-card__grid{grid-template-columns:1fr;}}
 </style>
 
 <script>
+  const key=import.meta.env.PUBLIC_PAYSTACK_KEY;
+  const CURRENCIES=['NGN','GHS','KES','ZAR','USD'];
+  const SYMBOLS={USD:'$',KES:'KSh',NGN:'₦',GHS:'GH₵',ZAR:'R'};
+  const PRICES={USD:[25,50,100,250],KES:[500,1000,2500,5000],NGN:[1000,2500,5000,10000],GHS:[50,100,250,500],ZAR:[100,250,500,1000]};
+  const COUNTRY_MAP={NG:'NGN',GH:'GHS',KE:'KES',ZA:'ZAR'};
+  const DEFAULT=import.meta.env.PUBLIC_PAYSTACK_DEFAULT_CURRENCY||'KES';
+  let currency=DEFAULT;
+
+  const fmt=(c,n)=>{const s=SYMBOLS[c]||c;const num=n.toLocaleString('en');return c==='KES'?`${s} ${num}`:`${s}${num}`;};
+
+  function applyCurrency(c){
+    if(!CURRENCIES.includes(c)) return;
+    currency=c;
+    document.querySelectorAll('.donate__tier-amt').forEach(el=>{
+      const i=parseInt(el.dataset.amt||'0');const v=PRICES[c][i]||PRICES[c][0];
+      el.textContent=fmt(c,v);
+      const inp=el.closest('.donate__tier').querySelector('input');if(inp)inp.value=v;
+    });
+    const prefix=document.querySelector('.donate__custom-prefix');
+    if(prefix) prefix.textContent=SYMBOLS[c]||c;
+  }
+
+  async function detectCurrency(){
+    const tries=[
+      async()=>{const r=await fetch('https://get.geojs.io/v1/ip/country.json',{signal:AbortSignal.timeout(4000)});const j=await r.json();return j&&j.country;},
+      async()=>{const r=await fetch('https://ipapi.co/json/',{signal:AbortSignal.timeout(4000)});const j=await r.json();return j&&j.country_code;}
+    ];
+    for(const f of tries){
+      try{const cc=await f();if(cc&&COUNTRY_MAP[cc]){applyCurrency(COUNTRY_MAP[cc]);return;}}catch(e){}
+    }
+  }
+
+  function loadPaystack(){
+    return new Promise(res=>{
+      if(window.PaystackPop) return res();
+      const s=document.createElement('script');
+      s.src='https://js.paystack.co/v1/inline.js';
+      s.onload=()=>res();
+      s.onerror=()=>res();
+      document.head.appendChild(s);
+    });
+  }
+
+  detectCurrency();
+
   const freqBtns=document.querySelectorAll('.donate__freq-btn');
   freqBtns.forEach(b=>b.addEventListener('click',()=>{freqBtns.forEach(x=>x.classList.remove('is-active'));b.classList.add('is-active');}));
+
+  const custom=document.getElementById('custom-amount');
+  document.querySelectorAll('.donate__tier input').forEach(r=>r.addEventListener('change',()=>{if(custom)custom.value='';}));
+  custom?.addEventListener('input',()=>{document.querySelectorAll('.donate__tier input').forEach(r=>r.checked=false);});
 
   const fill=document.querySelector('.donate__fill');
   if(fill){
     const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){fill.style.width=fill.dataset.progress+'%';obs.unobserve(en.target);}});},{threshold:.4});
     obs.observe(fill);
   }
+
+  document.getElementById('donate-cta')?.addEventListener('click',async()=>{
+    if(!key || key.indexOf('pk_')!==0 || key.indexOf('0000')>-1){alert('Paystack isn\'t configured yet — add your public key to the .env file, then rebuild.');return;}
+    const email=(document.getElementById('donate-email')?.value||'').trim();
+    const emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if(!emailOk){alert('Please enter your email — Paystack needs it for your receipt.');return;}
+    const customV=parseFloat(custom?.value||'');
+    let amount=null;
+    if(customV>0) amount=Math.round(customV);
+    else{
+      const checked=document.querySelector('.donate__tier input:checked');
+      amount=checked?parseInt(checked.value,10):null;
+    }
+    if(!amount||amount<=0){alert('Please choose an amount.');return;}
+    await loadPaystack();
+    if(!window.PaystackPop){alert('Couldn\'t load the Paystack checkout.');return;}
+    const handler=PaystackPop.setup({
+      key,
+      email,
+      amount:amount*100,
+      currency,
+      ref:'EJH'+Date.now()+''+Math.floor(100+Math.random()*900),
+      metadata:{custom_fields:[
+        {display_name:'Frequency',variable_name:'recurring',value:document.querySelector('.donate__freq-btn.is-active')?.dataset.freq==='monthly'?'Monthly':'Once'},
+        {display_name:'Gift amount',variable_name:'gift',value:fmt(currency,amount)}
+      ]},
+      callback:response=>{
+        alert('Thank you! Your founding gift of '+fmt(currency,amount)+' was received. Reference: '+response.reference);
+      },
+      onClose:()=>{}
+    });
+    handler.openIframe();
+  });
 </script>
