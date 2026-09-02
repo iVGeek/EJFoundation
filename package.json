@@ -9,6 +9,6 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "astro": "^5.12.0"
+    "astro": "^7.1.1"
   }
 }
