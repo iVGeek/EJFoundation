@@ -36,7 +36,8 @@ const money=(c,n)=>{const s=SYMBOLS[c]||c;return (c==='KES'?`${s} ${n.toLocaleSt
 
           <div class="donate__field">
             <label for="donate-email" class="donate__label">Email for your receipt</label>
-            <input type="email" id="donate-email" placeholder="you@example.com" required class="donate__input">
+            <input type="email" id="donate-email" placeholder="you@example.com" required class="donate__input" aria-describedby="donate-email-error">
+            <p class="donate__field-error" id="donate-email-error" role="alert" hidden>Email required — please enter your email to continue.</p>
           </div>
 
           <div class="donate__tiers">
@@ -113,6 +114,9 @@ const money=(c,n)=>{const s=SYMBOLS[c]||c;return (c==='KES'?`${s} ${n.toLocaleSt
     font-size:1rem;font-family:var(--font-body);transition:border-color .2s;
   }
   .donate__input:focus{outline:none;border-color:var(--primary);}
+  .donate__input.is-error{border-color:#B3261E;}
+  .donate__input.is-error:focus{border-color:#B3261E;}
+  .donate__field-error{color:#B3261E;font-size:.82rem;margin-top:.35rem;line-height:1.4;}
   .donate__input::placeholder{color:var(--muted);}
 
   .donate__tiers{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1rem;}
@@ -244,11 +248,24 @@ const money=(c,n)=>{const s=SYMBOLS[c]||c;return (c==='KES'?`${s} ${n.toLocaleSt
   // Warm up fetch in background regardless of scroll
   observeOrFill();
 
+  const emailInput=document.getElementById('donate-email');
+  const emailError=document.getElementById('donate-email-error');
+  function showEmailError(){
+    emailError.hidden=false;
+    emailInput.classList.add('is-error');
+    emailInput.focus();
+  }
+  function clearEmailError(){
+    emailError.hidden=true;
+    emailInput.classList.remove('is-error');
+  }
+  emailInput?.addEventListener('input',clearEmailError);
+
   document.getElementById('donate-cta')?.addEventListener('click',async()=>{
     if(!key || key.indexOf('pk_')!==0 || key.indexOf('0000')>-1){alert('Paystack isn\'t configured yet — add your public key to the .env file, then rebuild.');return;}
-    const email=(document.getElementById('donate-email')?.value||'').trim();
+    const email=(emailInput?.value||'').trim();
     const emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if(!emailOk){alert('Email required — please enter your email to continue.');return;}
+    if(!emailOk){showEmailError();return;}
     const customV=parseFloat(custom?.value||'');
     let amount=null;
     if(customV>0) amount=Math.round(customV);
