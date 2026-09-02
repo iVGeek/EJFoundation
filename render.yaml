@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: ej-hope-foundation
+    name: ej-hope-foundation-static
     runtime: static
     repo: https://github.com/iVGeek/EJFoundation
     buildCommand: npm run build
