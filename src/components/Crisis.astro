@@ -23,36 +23,36 @@
 
 <style>
   .crisis-top{
-    background:var(--grad-brand);
-    color:#fff;
+    background:var(--primary);
+    color:var(--on-primary);
     position:relative;
     z-index:1100;
   }
   .crisis-top__inner{
     display:flex;align-items:center;justify-content:center;
-    gap:1.25rem;flex-wrap:wrap;
-    padding:.55rem 0;min-height:var(--crisis-h);
+    gap:1.1rem;flex-wrap:wrap;
+    padding:.45rem 0;min-height:var(--crisis-h);
   }
   .crisis-top__tag{
-    font-weight:800;font-size:.76rem;text-transform:uppercase;letter-spacing:.12em;
-    padding:.3rem .7rem;border-radius:var(--radius-full);
-    background:rgba(255,255,255,.18);
+    font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+    padding:.28rem .7rem;border-radius:var(--radius-xs);
+    background:rgba(255,255,255,.2);
   }
-  .crisis-top__msg{font-weight:700;font-size:.9rem;}
-  .crisis-top__msg span{font-weight:600;opacity:.9;}
-  .crisis-top__cta{display:flex;gap:.4rem;flex-wrap:wrap;}
+  .crisis-top__msg{font-weight:500;font-size:.9rem;}
+  .crisis-top__msg span{opacity:.92;}
+  .crisis-top__cta{display:flex;gap:.5rem;flex-wrap:wrap;}
   .crisis-top__link{
     display:inline-flex;align-items:center;gap:.4rem;
-    padding:.4rem .85rem;border-radius:var(--radius-full);
-    background:rgba(255,255,255,.16);font-weight:700;font-size:.82rem;
-    transition:background .2s,transform .2s;
+    padding:.4rem .85rem;border-radius:var(--radius-xs);
+    background:rgba(255,255,255,.16);font-weight:500;font-size:.82rem;
+    transition:background var(--dur-fast);
   }
   .crisis-top__link svg{width:14px;height:14px;}
-  .crisis-top__link:hover{background:rgba(255,255,255,.3);transform:translateY(-1px);}
+  .crisis-top__link:hover{background:rgba(255,255,255,.28);}
   .crisis-top__link--chat{
-    background:#fff;color:var(--terra-deep);
+    background:var(--on-primary);color:var(--primary);
   }
-  .crisis-top__link--chat:hover{background:var(--terra-deep);color:#fff;}
+  .crisis-top__link--chat:hover{background:#FFF3E0;color:var(--primary-hover);}
 
   @media(max-width:768px){
     .crisis-top__msg{display:none;}

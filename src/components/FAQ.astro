@@ -1,28 +1,31 @@
 ---
 const faqs=[
-  { q:'Is the foundation new?', a:'Yes — proudly. We were founded in 2025 in memory of Elsie Jelagat. We\'re in our first year: honest about our size, ambitious about our mission, and building everything with the community from day one.' },
-  { q:'How can I get involved?', a:'We\'re small and everything is still being built, so there has never been an easier time to help. Volunteer at our first events, become a founding partner or volunteer, or spread the word — reach out through the contact form and we\'ll match you with the right opportunity.' },
-  { q:'Are your services confidential?', a:'Yes — always. We understand how sensitive mental health is. Everything shared with us stays private and protected, full stop.' },
-  { q:'Do you offer professional counseling?', a:'We provide peer support groups and connect people with licensed professionals in our network. Our programs complement professional treatment with community care — starting small, growing fast.' },
-  { q:'How are donations used?', a:'Donations go directly toward launching and running our first programs: the 24/7 helpline, community workshops, and support groups. Every gift is a founding gift and goes straight to work.' },
-  { q:'Can I share my story?', a:'Absolutely — and we\'d be honored. Sharing your story helps others feel less alone and breaks the stigma. Contact us and we\'ll guide you through it.' }
+  { q:'Is everything really free?', a:'Yes. All our support services — talks, visits, events, and eventually the helpline — are completely free. We do this because cost should never stop someone from seeking help.' },
+  { q:'How do you handle privacy and confidentiality?', a:'When we set up one-to-one support, we follow strict practices borrowed from trained counselors: your details stay private, nothing is shared without your consent, and our home-visit teams are bound by the same care.' },
+  { q:'Where do my donations actually go?', a:'Straight into year-one work: getting the 24/7 helpline live, running our first talk sessions and home visits, and covering the small costs of a brand-new foundation. Every program is listed on our site — there\'s nowhere else for it to go.' },
+  { q:'How can I get help right now?', a:'If it\'s urgent, never wait: 988 is the national suicide & crisis lifeline through call or text. For anything else, reach us through the contact form or join an upcoming event — we\'ll point you to the right support.' }
 ];
 ---
-<section class="section section--alt faq">
-  <div class="container container__narrow">
+<section id="faq" class="section">
+  <div class="container">
     <div class="section-head section-head--center">
-      <span class="section-eyebrow reveal">Good to know</span>
-      <h2 class="section-title reveal">Frequently asked <em>questions</em></h2>
+      <span class="section-eyebrow reveal">FAQ</span>
+      <h2 class="section-title reveal">Questions, <em>answered</em></h2>
+      <p class="section-sub reveal">The things people ask us most as we get started.</p>
     </div>
 
-    <div class="faq__list">
+    <div class="faq">
       {faqs.map((f,i)=>(
-        <div class={`faq__item reveal reveal-d${Math.min(i+1,4)}`}>
-          <button class="faq__q" aria-expanded="false">
+        <div class="faq__item reveal reveal-d{i===0?1:2}">
+          <button class="faq__q" aria-expanded={i===0} aria-controls={`faq-a-${i}`}>
             <span>{f.q}</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+            <span class="faq__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            </span>
           </button>
-          <div class="faq__a"><p>{f.a}</p></div>
+          <div class="faq__a" id={`faq-a-${i}`} hidden={i!==0}>
+            <p>{f.a}</p>
+          </div>
         </div>
       ))}
     </div>
@@ -30,25 +33,32 @@ const faqs=[
 </section>
 
 <style>
-  .container__narrow{max-width:760px;}
-  .faq__list{margin-top:2rem;}
-  .faq__item{margin-bottom:1rem;overflow:hidden;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-md);transition:border-color .3s;}
-  .faq__q{width:100%;padding:1.4rem 1.5rem;display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--ink);font-size:1.02rem;text-align:left;font-family:var(--font-body);}
-  .faq__q svg{width:20px;height:20px;color:var(--terra);transition:transform .4s var(--ease-out);flex-shrink:0;}
-  .faq__item.is-active{border-color:var(--terra);}
-  .faq__item.is-active .faq__q svg{transform:rotate(180deg);}
-  .faq__a{max-height:0;overflow:hidden;transition:max-height .45s var(--ease-out);}
-  .faq__item.is-active .faq__a{max-height:280px;}
-  .faq__a p{padding:0 1.5rem 1.5rem;color:var(--ink-2);line-height:1.8;}
+  .faq{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:.8rem;}
+  .faq__item{background:var(--surface);border:1px solid var(--outline-variant);border-radius:var(--radius-sm);box-shadow:var(--e1);overflow:hidden;transition:border-color .25s;}
+  .faq__item.is-open{border-color:var(--primary);}
+  .faq__q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.25rem 1.5rem;background:transparent;border:none;font-weight:600;font-size:1.02rem;color:var(--on-surface);cursor:pointer;text-align:left;}
+  .faq__icon{width:28px;height:28px;flex-shrink:0;border-radius:var(--radius-full);background:var(--surface-variant);color:var(--primary);display:flex;align-items:center;justify-content:center;transition:transform .3s var(--ease-out),background .2s;}
+  .faq__icon svg{width:15px;height:15px;}
+  .faq__item.is-open .faq__icon{background:var(--primary-container);transform:rotate(45deg);}
+  .faq__a{padding:0 1.5rem;color:var(--on-surface-variant);line-height:1.75;font-size:.95rem;}
+  .faq__a p{padding-bottom:1.4rem;}
 </style>
 
 <script>
-  document.querySelectorAll('.faq__q').forEach(q=>{
-    q.addEventListener('click',()=>{
-      const item=q.closest('.faq__item');
-      const open=item.classList.contains('is-active');
-      document.querySelectorAll('.faq__item').forEach(x=>{x.classList.remove('is-active');x.querySelector('.faq__q')?.setAttribute('aria-expanded','false');});
-      if(!open){item.classList.add('is-active');q.setAttribute('aria-expanded','true');}
+  const items=document.querySelectorAll('.faq__item');
+  items.forEach((item,idx)=>{
+    const btn=item.querySelector('.faq__q');
+    const ans=item.querySelector('.faq__a');
+    btn.addEventListener('click',()=>{
+      items.forEach((other,j)=>{
+        if(j===idx) return;
+        other.classList.remove('is-open');
+        other.querySelector('.faq__q').setAttribute('aria-expanded','false');
+        other.querySelector('.faq__a').hidden=true;
+      });
+      const open=item.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded',String(open));
+      ans.hidden=!open;
     });
   });
 </script>

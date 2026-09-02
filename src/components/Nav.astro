@@ -2,19 +2,17 @@
 ---
 <header class="nav" id="nav">
   <nav class="container nav__inner">
-    <!-- Brand -->
     <a href="/" class="nav__brand" aria-label="EJ Hope Foundation home">
       <span class="nav__logo" aria-hidden="true">
         <svg viewBox="0 0 48 48" fill="none">
-          <circle cx="24" cy="24" r="20" stroke="#c96a3c" stroke-width="2"/>
-          <path d="M16 29c0-5 3-9 8-9s8 4 8 9" stroke="#c96a3c" stroke-width="2.4" stroke-linecap="round"/>
-          <circle cx="24" cy="17" r="3.5" fill="#c96a3c"/>
+          <circle cx="24" cy="24" r="20" stroke="#F57C00" stroke-width="3"/>
+          <path d="M16 29c0-5 3-9 8-9s8 4 8 9" stroke="#F57C00" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="24" cy="17" r="3.5" fill="#F57C00"/>
         </svg>
       </span>
       <span class="nav__name">EJ.<span class="mark">Hope</span></span>
     </a>
 
-    <!-- Links -->
     <div class="nav__links" id="nav-links">
       <a href="#about" class="nav__link">Our Story</a>
       <a href="#programs" class="nav__link">Programs</a>
@@ -24,7 +22,6 @@
       <a href="#contact" class="nav__link">Contact</a>
     </div>
 
-    <!-- Actions -->
     <div class="nav__actions">
       <a href="#donate" class="btn btn--primary nav__donate">
         Donate
@@ -40,37 +37,38 @@
 <style>
   .nav{
     position:sticky;top:0;z-index:1050;
-    padding:.9rem 0;
-    background:rgba(247,240,230,.88);
-    backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);
-    border-bottom:1px solid var(--line);
+    padding:.85rem 0;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2);
+    border-bottom:1px solid var(--outline-variant);
     transition:padding .3s var(--ease-out),background .3s,box-shadow .3s;
   }
-  .nav.is-scrolled{padding:.5rem 0;background:rgba(247,240,230,.95);box-shadow:var(--card-shadow);}
+  .nav.is-scrolled{padding:.5rem 0;background:rgba(255,255,255,.97);box-shadow:var(--e1);}
   .nav__inner{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;}
   .nav__brand{display:flex;align-items:center;gap:.55rem;}
-  .nav__logo{width:38px;height:38px;}
-  .nav__name{font-family:var(--font-display);font-size:1.5rem;letter-spacing:-.01em;}
-  .nav__name .mark{color:var(--terra);}
+  .nav__logo{width:36px;height:36px;}
+  .nav__name{font-size:1.25rem;font-weight:600;letter-spacing:-.01em;}
+  .nav__name .mark{color:var(--primary);}
 
-  .nav__links{display:flex;gap:1.6rem;}
+  .nav__links{display:flex;gap:1.7rem;}
   .nav__link{
-    position:relative;font-weight:600;font-size:.92rem;color:var(--ink-2);
+    position:relative;font-weight:500;font-size:.92rem;color:var(--on-surface-variant);
     padding:.25rem 0;transition:color .2s;
   }
   .nav__link::after{
     content:'';position:absolute;left:0;bottom:-2px;height:2px;width:0;
-    background:var(--terra);border-radius:2px;
-    transition:width .3s var(--ease-out);
+    background:var(--primary);border-radius:2px;
+    transition:width .25s var(--ease-out);
   }
-  .nav__link:hover,.nav__link.is-active{color:var(--terra);}
+  .nav__link:hover{color:var(--on-surface);}
+  .nav__link.is-active{color:var(--primary);}
   .nav__link.is-active::after{width:100%;}
 
   .nav__actions{display:flex;align-items:center;gap:.9rem;}
-  .nav__donate{padding:.6rem 1.3rem;font-size:.9rem;}
+  .nav__donate{height:40px;padding:0 1.2rem;font-size:.9rem;}
 
   .nav__burger{display:none;flex-direction:column;gap:5px;padding:.4rem;}
-  .nav__burger span{width:24px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s var(--ease-out);}
+  .nav__burger span{width:24px;height:2px;background:var(--on-surface);border-radius:2px;transition:all .3s var(--ease-out);}
   .nav__burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
   .nav__burger[aria-expanded="true"] span:nth-child(2){opacity:0;}
   .nav__burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
@@ -80,12 +78,12 @@
     .nav__links{
       position:fixed;top:calc(var(--crisis-h) + var(--nav-h));left:0;right:0;bottom:0;
       flex-direction:column;align-items:center;justify-content:center;gap:2rem;
-      background:rgba(247,240,230,.98);backdrop-filter:blur(20px);
+      background:rgba(255,255,255,.98);backdrop-filter:blur(20px);
       opacity:0;visibility:hidden;transform:translateY(-12px);
       transition:all .4s var(--ease-out);
     }
     .nav__links.open{opacity:1;visibility:visible;transform:translateY(0);}
-    .nav__link{font-size:1.5rem;color:var(--ink);}
+    .nav__link{font-size:1.4rem;color:var(--on-surface);}
     .nav__donate{display:none;}
   }
 </style>
@@ -99,7 +97,6 @@
     nav?.classList.toggle('is-scrolled',window.scrollY>40);
   },{passive:true});
 
-  // Scroll spy — highlight nav link for section in view
   const linkEls=Array.from(document.querySelectorAll('.nav__link'));
   const sections=linkEls.map(l=>{
     const id=l.getAttribute('href');
