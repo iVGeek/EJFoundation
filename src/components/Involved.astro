@@ -6,9 +6,9 @@ const ways=[
 ];
 
 const tiers=[
-  { name:'Founder', amount:'$1,000+', color:'var(--primary)', feats:['Name on our founding wall','First-year impact updates','Early access to everything'] },
-  { name:'Patron', amount:'$5,000+', color:'var(--primary)', featured:true, feats:['Everything in Founder','Named in launch materials','Invitation to our launch event'] },
-  { name:'Champion', amount:'$10,000+', color:'var(--primary)', feats:['Everything in Patron','Co-naming a year-one program','A seat at our first table'] }
+  { name:'Founder', color:'var(--primary)', feats:['Name on our founding wall','First-year impact updates','Early access to everything'] },
+  { name:'Patron', color:'var(--primary)', featured:true, feats:['Everything in Founder','Named in launch materials','Invitation to our launch event'] },
+  { name:'Champion', color:'var(--primary)', feats:['Everything in Patron','Co-naming a year-one program','A seat at our first table'] }
 ];
 ---
 <section id="get-involved" class="section section--alt">
@@ -45,7 +45,6 @@ const tiers=[
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
             </div>
             <h3 class="involved__tier-name">{t.name}</h3>
-            <p class="involved__tier-amt">{t.amount}</p>
             <ul class="involved__feats">
               {t.feats.map(f=>(
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>{f}</li>
