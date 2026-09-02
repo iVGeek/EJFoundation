@@ -1,10 +1,10 @@
 services:
   - type: web
-    name: ej-hope-foundation-static
-    runtime: static
+    name: ej-hope-foundation
+    runtime: node
     repo: https://github.com/iVGeek/EJFoundation
-    buildCommand: npm run build
-    staticPublishPath: dist
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
     envVars:
       - key: NODE_VERSION
         value: "20"
