@@ -18,15 +18,15 @@ const money=(c,n)=>{const s=SYMBOLS[c]||c;return (c==='KES'?`${s} ${n.toLocaleSt
           <div class="donate__campaign">
             <div class="donate__campaign-top">
               <span class="donate__campaign-label">Year-one goal</span>
-              <span class="donate__campaign-pct">33%</span>
+              <span class="donate__campaign-pct" id="donate-pct">Loading…</span>
             </div>
             <div class="donate__campaign-title">Launch the 24/7 Helpline</div>
-            <div class="donate__bar"><div class="donate__fill" data-progress="33"></div></div>
+            <div class="donate__bar"><div class="donate__fill" id="donate-fill" style="width:0%"></div></div>
             <div class="donate__campaign-nums">
-              <span class="donate__raised">KSh 82,500</span>
-              <span class="donate__goal">of KSh 250,000 goal</span>
+              <span class="donate__raised" id="donate-raised">KSh 0</span>
+              <span class="donate__goal">of KSh 1,000,000 goal</span>
             </div>
-            <p class="donate__campaign-note">Goal shown in the foundation's currency (KES). Donations are settled securely via Paystack.</p>
+            <p class="donate__campaign-note" id="donate-live">Live total updates automatically from every successful donation. Goal shown in the foundation's currency (KES).</p>
           </div>
         </div>
 
@@ -201,11 +201,53 @@ const money=(c,n)=>{const s=SYMBOLS[c]||c;return (c==='KES'?`${s} ${n.toLocaleSt
   document.querySelectorAll('.donate__tier input').forEach(r=>r.addEventListener('change',()=>{if(custom)custom.value='';}));
   custom?.addEventListener('input',()=>{document.querySelectorAll('.donate__tier input').forEach(r=>r.checked=false);});
 
-  const fill=document.querySelector('.donate__fill');
-  if(fill){
-    const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){fill.style.width=fill.dataset.progress+'%';obs.unobserve(en.target);}});},{threshold:.4});
+  const CAMPAIGN_GOAL = 1000000; // KES
+  const fmtKes = n => 'KSh ' + Math.round(n).toLocaleString('en');
+  const fill = document.getElementById('donate-fill');
+  const raisedEl = document.getElementById('donate-raised');
+  const pctEl = document.getElementById('donate-pct');
+  let revealedOnce = false;
+  const obs = new IntersectionObserver(finish => {
+    finish.forEach(en => {
+      if (en.isIntersecting && !revealedOnce) {
+        revealedOnce = true;
+        observeOrFill();
+        obs.disconnect();
+      }
+    });
+  }, { threshold: .4 });
+
+  function setCampaign(kes) {
+    const pct = Math.min(100, (kes / CAMPAIGN_GOAL) * 100);
+    if (raisedEl) raisedEl.textContent = fmtKes(kes);
+    if (pctEl) pctEl.textContent = pct.toFixed(pct % 1 ? 1 : 0) + '%';
+    if (fill) fill.style.width = pct + '%';
+  }
+
+  async function observeOrFill() {
+    try {
+      const r = await fetch('/api/raised', { cache: 'no-store' });
+      const j = await r.json();
+      if (j && j.ok && typeof j.total === 'number') {
+        setCampaign(j.total / 100); // Paystack reports smallest unit
+      } else {
+        setCampaign(0);
+        const note = document.getElementById('donate-live');
+        if (note && j && j.error === 'not_configured') {
+          note.textContent = 'Total updates automatically from every successful donation.';
+        }
+      }
+    } catch (e) {
+      setCampaign(0);
+    }
+  }
+
+  if (fill) {
+    if (fill.dataset.progress) fill.style.width = fill.dataset.progress + '%';
     obs.observe(fill);
   }
+  // Warm up fetch in background regardless of scroll
+  observeOrFill();
 
   document.getElementById('donate-cta')?.addEventListener('click',async()=>{
     if(!key || key.indexOf('pk_')!==0 || key.indexOf('0000')>-1){alert('Paystack isn\'t configured yet — add your public key to the .env file, then rebuild.');return;}

@@ -10,5 +10,7 @@ services:
         value: "20"
       - key: PUBLIC_PAYSTACK_KEY
         sync: false
+      - key: PAYSTACK_SECRET_KEY
+        sync: false
       - key: PUBLIC_PAYSTACK_DEFAULT_CURRENCY
         value: KES
