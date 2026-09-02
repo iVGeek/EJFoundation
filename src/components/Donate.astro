@@ -26,7 +26,6 @@ const money=(c,n)=>{const s=SYMBOLS[c]||c;return (c==='KES'?`${s} ${n.toLocaleSt
               <span class="donate__raised" id="donate-raised">KSh 0</span>
               <span class="donate__goal">of KSh 1,000,000 goal</span>
             </div>
-            <p class="donate__campaign-note" id="donate-live">Live total updates automatically from every successful donation.</p>
           </div>
         </div>
 
@@ -232,10 +231,6 @@ const money=(c,n)=>{const s=SYMBOLS[c]||c;return (c==='KES'?`${s} ${n.toLocaleSt
         setCampaign(j.total / 100); // Paystack reports smallest unit
       } else {
         setCampaign(0);
-        const note = document.getElementById('donate-live');
-        if (note && j && j.error === 'not_configured') {
-          note.textContent = 'Total updates automatically from every successful donation.';
-        }
       }
     } catch (e) {
       setCampaign(0);
