@@ -248,7 +248,7 @@ const money=(c,n)=>{const s=SYMBOLS[c]||c;return (c==='KES'?`${s} ${n.toLocaleSt
     if(!key || key.indexOf('pk_')!==0 || key.indexOf('0000')>-1){alert('Paystack isn\'t configured yet — add your public key to the .env file, then rebuild.');return;}
     const email=(document.getElementById('donate-email')?.value||'').trim();
     const emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if(!emailOk){alert('Please enter your email — Paystack needs it for your receipt.');return;}
+    if(!emailOk){alert('Email required — please enter your email to continue.');return;}
     const customV=parseFloat(custom?.value||'');
     let amount=null;
     if(customV>0) amount=Math.round(customV);
